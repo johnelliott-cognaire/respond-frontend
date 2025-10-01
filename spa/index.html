@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cognaire Respond</title>
+
+  <!-- Tribute & Tagify CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tributejs/dist/tribute.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" />
+  
+    <!-- Design Tokens (foundation of design system) -->
+    <link rel="stylesheet" href="/styles/tokens.css">
+  
+    <!-- Base & Utilities (core styling and utility classes) -->
+    <link rel="stylesheet" href="/styles/base.css">
+    <link rel="stylesheet" href="/styles/utilities/display.css">
+    <link rel="stylesheet" href="/styles/utilities/state.css">
+  
+    <!-- Components (modular UI elements) -->
+    <link rel="stylesheet" href="/styles/components/button.css">
+    <link rel="stylesheet" href="/styles/components/button-group.css">
+    <link rel="stylesheet" href="/styles/components/form-group.css">
+    <link rel="stylesheet" href="/styles/components/modal.css">
+    <link rel="stylesheet" href="/styles/modal-navigation.css">
+    <link rel="stylesheet" href="/styles/components/status.css">
+    <link rel="stylesheet" href="/styles/components/status-dropdown.css">
+    <link rel="stylesheet" href="/styles/components/dropdown.css">
+    <link rel="stylesheet" href="/styles/components/breadcrumb.css">
+    <link rel="stylesheet" href="/styles/components/grid-ag.css">
+    <link rel="stylesheet" href="/styles/components/flexible-table.css">
+    <link rel="stylesheet" href="/styles/components/responsive-table.css">
+    <link rel="stylesheet" href="/styles/components/corpus-tabs.css">
+    <link rel="stylesheet" href="/styles/components/corpus-browser.css">
+    <link rel="stylesheet" href="/styles/components/tabs.css">
+    <link rel="stylesheet" href="/styles/components/tabs-excel.css">
+    <link rel="stylesheet" href="/styles/components/import-wizard-modal.css">
+    <link rel="stylesheet" href="/styles/components/import-worksheet-tabs.css">
+    <link rel="stylesheet" href="/styles/components/import-grid-readonly.css">
+    <link rel="stylesheet" href="/styles/components/analysis-lm.css">
+    <link rel="stylesheet" href="/styles/components/file-upload.css">
+    <link rel="stylesheet" href="/styles/components/document-item-history.css">
+    <link rel="stylesheet" href="/styles/components/corpus-content-import-wizard.css">
+    <link rel="stylesheet" href="/styles/components/question-grid-analytics-modal.css">
+    <link rel="stylesheet" href="/styles/components/export-modal.css">
+    <link rel="stylesheet" href="/styles/components/stage-form-rfp-metadata.css">
+    <link rel="stylesheet" href="/styles/components/fullscreen.css">
+    <link rel="stylesheet" href="/styles/components/enhanced-job-progress.css">
+    <link rel="stylesheet" href="/styles/components/url-validation-modal.css">
+    
+    <!-- Layouts -->
+    <link rel="stylesheet" href="/styles/layouts/import-wizard.css" />
+    <link rel="stylesheet" href="/styles/layouts/document.css" />
+    <link rel="stylesheet" href="/styles/layouts/corpus.css" />
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css" />
+
+    <!-- EasyMDE -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" />
+    
+    <!-- Debug cursor styles disabled for performance -->
+    <!-- <link rel="stylesheet" href="styles/debug-cursor.css" /> -->
+</head>
+<body>
+  <!-- Top Bar Root -->
+  <div id="topBarRoot"></div>
+
+  <!-- Tab Bar Wrapper -->
+  <div class="tab-bar-wrapper" style="margin: 0 20px; display: none;">
+    <button class="scroll-btn" id="scrollLeft">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <div id="tabsRoot" style="flex:1;"></div>
+    <button class="scroll-btn" id="scrollRight">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <button class="new-tab-button" id="btnNewTab">
+      <i class="fas fa-plus"></i>
+    </button>
+    <div id="newTabMenu"></div>
+  </div>
+
+  <main>
+    <div id="mainContent"></div>
+  </main>
+
+  <!-- Jobs Modal -->
+  <div class="overlay" id="overlay" style="display: none;"></div>
+
+  <!-- Tribute & Tagify JS -->
+  <script src="https://cdn.jsdelivr.net/npm/tributejs/dist/tribute.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+
+  <!-- AG Grid Community -->
+  <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@33.2.2/dist/ag-grid-community.min.js"></script>
+
+  <!-- Shoelace -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+
+  <!-- Flatpickr for the date picker component -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+
+  <!-- EasyMDE -->
+  <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+
+  <!-- Marked.js for viewing Markdown -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/15.0.7/marked.min.js" integrity="sha512-rPuOZPx/WHMHNx2RoALKwiCDiDrCo4ekUctyTYKzBo8NGA79NcTW2gfrbcCL2RYL7RdjX2v9zR0fKyI4U4kPew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Turndown Service for converting HTML to Markdown -->
+  <script src="https://unpkg.com/turndown@7.1.2/dist/turndown.js"></script>
+  
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

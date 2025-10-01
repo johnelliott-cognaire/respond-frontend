@@ -1,0 +1,613 @@
+/* -----------------------------------------------------------------
+ *  File: styles/components/corpus-content-import-wizard.css
+ *  Scope: ONLY corpus‑specific rules **not already defined**
+ *         in import‑wizard‑modal.css or layouts/import‑wizard.css
+ * ----------------------------------------------------------------*/
+
+/* 1.  WIZARD BODY (extra inner padding – keeps generic modal intact) */
+.modal--import-wizard .import-wizard-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 20px 90px;
+    /* leave footer clearance */
+}
+
+/* -----------------------------------------------------------------
+   *  NOTE ─ We **removed** ALL definitions for:
+   *           .step-indicator, .step, .step-number, .step-name,
+   *           .step-connector, and the base .modal--import-wizard
+   *        because those classes already exist in the shared
+   *        wizard sheets.  The generic styles will be reused as‑is.
+   * ----------------------------------------------------------------*/
+
+/* 2.  METHOD SELECTION (kept – unique to wizard) */
+.import-methods-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.import-method-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.import-method-option:hover {
+    border-color: var(--interactive-primary);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1);
+    transform: translateY(-4px);
+}
+
+.import-method-option.selected {
+    border: 2px solid var(--interactive-primary);
+    background: rgba(0, 102, 204, 0.05) !important;
+}
+
+.import-method-option.disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+.method-icon {
+    font-size: 2.5rem;
+    margin-bottom: 24px;
+    color: var(--interactive-primary);
+}
+
+.method-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.method-description {
+    text-align: center;
+    margin-bottom: 24px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* 3.  TEXT ENTRY – editor & format buttons */
+.text-entry-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.format-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.format-selector .editor-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.format-buttons {
+    display: flex;
+    margin-right: auto;
+}
+
+.format-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--border-subtle);
+    background: #fff;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.format-btn:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.format-btn:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.format-btn.active {
+    background: var(--interactive-primary);
+    color: #fff;
+    border-color: var(--interactive-primary);
+}
+
+.editor-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.editor-container {
+    min-height: 300px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+}
+
+.plain-textarea {
+    width: 100%;
+    height: 300px;
+    padding: 16px;
+    border: none;
+    resize: vertical;
+    outline: none;
+    font-family: monospace;
+}
+
+.preview-container {
+    min-height: 300px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 24px;
+    background: #fff;
+}
+
+.markdown-preview {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* 4.  METADATA FORM */
+.modal--import-wizard .document-form-container {
+    margin-top: 24px;
+}
+
+.modal--import-wizard .metadata-form {
+    background: var(--surface-alt);
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.form-section-title {
+    margin: 0 0 24px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-select,
+.form-input {
+    padding: 12px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    background: #fff;
+    font-size: 1rem;
+}
+
+.path-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-hint {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.form-preview {
+    margin-top: 32px;
+    padding: 16px;
+    background: #fff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+}
+
+.form-preview-label {
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.path-valid {
+    font-family: monospace;
+    word-break: break-all;
+    color: var(--text-primary);
+}
+
+.path-placeholder {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* 5.  FILE UPLOAD */
+.modal--import-wizard .drag-drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    border: 2px dashed var(--border-subtle);
+    border-radius: 8px;
+    background: var(--surface-alt);
+    transition: .2s;
+    cursor: pointer;
+}
+
+.modal--import-wizard .drag-drop-area.dragover {
+    border-color: var(--interactive-primary);
+    background: rgba(var(--interactive-primary-rgb), .05);
+}
+
+.modal--import-wizard .drag-drop-icon {
+    font-size: 3rem;
+    margin-bottom: 24px;
+    color: var(--text-secondary);
+}
+
+.modal--import-wizard .drag-drop-text {
+    text-align: center;
+}
+
+.modal--import-wizard .file-input-label {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--interactive-primary);
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.modal--import-wizard .file-input-label:hover {
+    background: var(--interactive-primary-dark);
+}
+
+.modal--import-wizard .selected-file-info {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid var(--status-success);
+    border-radius: 8px;
+    background: rgba(var(--status-success-rgb), .05);
+}
+
+.modal--import-wizard .file-info {
+    display: flex;
+    align-items: center;
+}
+
+.modal--import-wizard .file-icon {
+    font-size: 2.5rem;
+    margin-right: 16px;
+    color: var(--text-primary);
+}
+
+.modal--import-wizard .file-details {
+    flex-grow: 1;
+}
+
+.modal--import-wizard .file-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.modal--import-wizard .file-size {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.modal--import-wizard .change-file-btn {
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.modal--import-wizard .change-file-btn:hover {
+    background: var(--surface-alt);
+}
+
+.modal--import-wizard .file-instructions {
+    margin-top: 16px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.modal--import-wizard .import-upload-progress {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid var(--interactive-primary);
+    border-radius: 8px;
+    background: rgba(var(--interactive-primary-rgb), .05);
+}
+
+.modal--import-wizard .import-progress-label {
+    margin-bottom: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.modal--import-wizard .import-progress-container {
+    height: 12px;
+    background: #fff;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border: 1px solid var(--border-subtle);
+}
+
+.modal--import-wizard .import-progress-bar {
+    height: 100%;
+    background: var(--interactive-primary);
+    transition: width .3s;
+}
+
+.modal--import-wizard .import-progress-text {
+    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* 6.  RESPONSIVE TWEAKS (unchanged) */
+@media (min-width:768px) {
+    .modal--import-wizard .content-review-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+    }
+}
+
+@media (max-width:767px) {
+    .modal--import-wizard .action-buttons {
+        flex-direction: column;
+    }
+
+    .modal--import-wizard .action-buttons button {
+        width: 100%;
+    }
+}
+
+/* Corpus Import Wizard - Review screen styling */
+.ciw-review-container {
+    display: grid;
+    grid-template-columns: minmax(250px, 400px) 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.ciw-review-content-preview-section,
+.ciw-review-document-details-section,
+.ciw-review-import-options-section {
+    background-color: var(--surface-alt, #f5f7fa);
+    border: 1px solid var(--border-subtle, #e0e5eb);
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.ciw-review-import-options-section {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+}
+
+.ciw-review-content-preview {
+    min-height: 200px;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid var(--border-subtle, #e0e5eb);
+    border-radius: 4px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+}
+
+.ciw-review-section-title {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.ciw-review-import-options-header {
+    display: flex;
+    align-items: center;
+}
+
+.ciw-review-info-icon {
+    margin-left: 0.5rem;
+    color: var(--text-secondary, #718096);
+    cursor: help;
+}
+
+.ciw-review-approval-workflow {
+    background-color: white;
+    border: 1px solid var(--border-subtle, #e0e5eb);
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 0.75rem 0 1.25rem;
+}
+
+.ciw-review-approval-workflow h5 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.ciw-review-approval-workflow ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+.ciw-review-import-mode-buttons {
+    display: flex;
+    width: 100%;
+}
+
+.ciw-review-mode-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem;
+    border: 1px solid var(--border-subtle, #e0e5eb);
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ciw-review-mode-btn:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.ciw-review-mode-btn:last-child {
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+}
+
+.ciw-review-mode-btn.active {
+    background-color: var(--interactive-primary, #4a5568);
+    color: white;
+    border-color: var(--interactive-primary, #4a5568);
+}
+
+.ciw-review-mode-btn i {
+    margin-right: 0.5rem;
+}
+
+.ciw-review-file-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+    text-align: center;
+}
+
+.ciw-review-file-preview-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary, #718096);
+}
+
+.ciw-review-file-name {
+    word-break: break-all;
+    font-weight: 500;
+}
+
+.ciw-review-generated-filename {
+    font-family: monospace;
+    word-break: break-all;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .ciw-review-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* -----------------------------------------------------------------
+ *  Δ Pure‑delta styles – brand‑new selectors only
+ *  (safe to paste anywhere without clashing with existing sheets)
+ * ----------------------------------------------------------------*/
+
+/* Preview value box (mono‑spaced) */
+.form-preview-value {
+    font-family: monospace;
+    word-break: break-all;
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+  }
+  
+  /* Domain / unit drop‑downs in path selector */
+  .domain-select,
+  .unit-select {
+    flex: 1;
+  }
+  
+  /* Red asterisk for “required” labels */
+  .required {
+    color: #d32f2f;
+    margin-left: 3px;
+  }
+  
+  /* ─────────────  Questions import result table  ───────────── */
+  .questions-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 14px;
+  }
+  
+  .questions-table th,
+  .questions-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .questions-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+  }
+  
+  .questions-table .question-id-col     { width: 80px;  }
+  .questions-table .question-text-col   { min-width: 300px; }
+  .questions-table .question-status-col { width: 100px; }
+  
+  /* Extra‑rows notice */
+  .more-questions-message {
+    margin-top: 12px;
+    font-style: italic;
+    color: #666;
+    text-align: right;
+    font-size: 12px;
+  }
+  
+  /* Status pill (success / failure) */
+  .status-chip {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .status-chip.status-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+  
+  .status-chip.status-failure {
+    background-color: #ffebee;
+    color: #c62828;
+  }
+  
+  /* Tooltip icon for error details */
+  .error-tooltip {
+    margin-left: 5px;
+    color: #c62828;
+    cursor: help;
+  }
+  

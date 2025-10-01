@@ -1,0 +1,274 @@
+{
+  "most_used_tokens": [
+    {
+      "token": "--text-primary",
+      "count": 26
+    },
+    {
+      "token": "--text-secondary",
+      "count": 23
+    },
+    {
+      "token": "--interactive-primary",
+      "count": 21
+    },
+    {
+      "token": "--theme-surface",
+      "count": 20
+    },
+    {
+      "token": "--border-subtle",
+      "count": 15
+    },
+    {
+      "token": "--status-error",
+      "count": 13
+    },
+    {
+      "token": "--theme-surface-alt",
+      "count": 12
+    },
+    {
+      "token": "--text-on-accent",
+      "count": 11
+    },
+    {
+      "token": "--interactive-hover",
+      "count": 8
+    },
+    {
+      "token": "--surface-dropdown-border",
+      "count": 8
+    },
+    {
+      "token": "--job-status-running",
+      "count": 7
+    },
+    {
+      "token": "--job-status-failed",
+      "count": 7
+    },
+    {
+      "token": "--color-white",
+      "count": 6
+    },
+    {
+      "token": "--text-muted",
+      "count": 6
+    },
+    {
+      "token": "--job-status-completed",
+      "count": 6
+    },
+    {
+      "token": "--theme-surface-raised",
+      "count": 6
+    },
+    {
+      "token": "--interactive-secondary",
+      "count": 6
+    },
+    {
+      "token": "--color-gray-500",
+      "count": 5
+    },
+    {
+      "token": "--color-primary",
+      "count": 5
+    },
+    {
+      "token": "--surface-dropdown-hover",
+      "count": 5
+    }
+  ],
+  "unused_mapped_tokens": [],
+  "orphaned_tokens": [],
+  "component_usage": {
+    "Other": [
+      "--color-gray-800",
+      "--color-gray-600",
+      "--color-gray-500",
+      "--color-gray-700",
+      "--color-gray-400",
+      "--color-white",
+      "--color-gray-300",
+      "--surface-background",
+      "--color-primary",
+      "--color-primary-light",
+      "--color-primary-transparent-10",
+      "--color-primary-transparent-20",
+      "--color-primary-rgb",
+      "--color-primary-transparent-5",
+      "--color-transparent-dark-10",
+      "--color-transparent-dark-20",
+      "--color-gray-200",
+      "--border-tab",
+      "--border-subtle",
+      "--color-error",
+      "--color-success",
+      "--color-warning",
+      "--color-info",
+      "--color-transparent-dark-50",
+      "--text-disabled",
+      "--surface-default",
+      "--overlay-bg",
+      "--surface-alt",
+      "--surface-dropdown-hover",
+      "--text-muted",
+      "--theme-surface",
+      "--text-primary",
+      "--input-border",
+      "--input-background",
+      "--shadow-subtle",
+      "--text-secondary",
+      "--theme-surface-alt",
+      "--interactive-primary",
+      "--interactive-hover",
+      "--text-on-accent",
+      "--status-success",
+      "--job-status-running",
+      "--job-status-failed",
+      "--status-error",
+      "--interactive-primary-light",
+      "--status-warning",
+      "--job-status-completed",
+      "--job-status-cancelled",
+      "--job-status-not-applicable",
+      "--border-strong",
+      "--theme-border",
+      "--theme-primary",
+      "--theme-surface-hover",
+      "--theme-primary-light",
+      "--theme-text-muted",
+      "--surface-dropdown",
+      "--surface-dropdown-border",
+      "--shadow-dropdown",
+      "--text-light",
+      "--theme-surface-raised",
+      "--focus-ring",
+      "--interactive-primary-rgb",
+      "--job-status-running-muted",
+      "--job-status-completed-muted",
+      "--job-status-failed-muted",
+      "--job-status-cancelled-muted",
+      "--surface-tab-border-active",
+      "--border-focus",
+      "--input-placeholder",
+      "--input-disabled-bg",
+      "--input-disabled-text",
+      "--primary-color-subtle",
+      "--interactive-secondary",
+      "--button-secondary-hover",
+      "--button-negative-hover",
+      "--opacity-disabled",
+      "--overlay-background",
+      "--table-header-cell-bg",
+      "--table-header-cell-text",
+      "--status-info",
+      "--theme-background",
+      "--background-color-content",
+      "--status-notification",
+      "--interactive-primary-hover"
+    ]
+  },
+  "file_token_counts": {
+    "styles/_tokens.css": 30,
+    "styles/tabs.css": 8,
+    "styles/modal.css": 27,
+    "styles/document.css": 25,
+    "styles/styles.css": 24,
+    "styles/menu.css": 22,
+    "styles/analysis-lm.css": 4
+  },
+  "token_counts": {
+    "--color-gray-800": 1,
+    "--color-gray-600": 1,
+    "--color-gray-500": 5,
+    "--color-gray-700": 1,
+    "--color-gray-400": 1,
+    "--color-white": 6,
+    "--color-gray-300": 3,
+    "--surface-background": 3,
+    "--color-primary": 5,
+    "--color-primary-light": 2,
+    "--color-primary-transparent-10": 1,
+    "--color-primary-transparent-20": 2,
+    "--color-primary-rgb": 1,
+    "--color-primary-transparent-5": 1,
+    "--color-transparent-dark-10": 1,
+    "--color-transparent-dark-20": 1,
+    "--color-gray-200": 2,
+    "--border-tab": 2,
+    "--border-subtle": 15,
+    "--color-error": 3,
+    "--color-success": 2,
+    "--color-warning": 2,
+    "--color-info": 2,
+    "--color-transparent-dark-50": 2,
+    "--text-disabled": 2,
+    "--surface-default": 3,
+    "--overlay-bg": 1,
+    "--surface-alt": 1,
+    "--surface-dropdown-hover": 5,
+    "--text-muted": 6,
+    "--theme-surface": 20,
+    "--text-primary": 26,
+    "--input-border": 5,
+    "--input-background": 3,
+    "--shadow-subtle": 2,
+    "--text-secondary": 23,
+    "--theme-surface-alt": 12,
+    "--interactive-primary": 21,
+    "--interactive-hover": 8,
+    "--text-on-accent": 11,
+    "--status-success": 4,
+    "--job-status-running": 7,
+    "--job-status-failed": 7,
+    "--status-error": 13,
+    "--interactive-primary-light": 1,
+    "--status-warning": 2,
+    "--job-status-completed": 6,
+    "--job-status-cancelled": 4,
+    "--job-status-not-applicable": 1,
+    "--border-strong": 1,
+    "--theme-border": 2,
+    "--theme-primary": 5,
+    "--theme-surface-hover": 2,
+    "--theme-primary-light": 1,
+    "--theme-text-muted": 2,
+    "--surface-dropdown": 3,
+    "--surface-dropdown-border": 8,
+    "--shadow-dropdown": 3,
+    "--text-light": 4,
+    "--theme-surface-raised": 6,
+    "--focus-ring": 3,
+    "--interactive-primary-rgb": 1,
+    "--job-status-running-muted": 1,
+    "--job-status-completed-muted": 1,
+    "--job-status-failed-muted": 1,
+    "--job-status-cancelled-muted": 1,
+    "--surface-tab-border-active": 3,
+    "--border-focus": 2,
+    "--input-placeholder": 1,
+    "--input-disabled-bg": 3,
+    "--input-disabled-text": 3,
+    "--primary-color-subtle": 1,
+    "--interactive-secondary": 6,
+    "--button-secondary-hover": 1,
+    "--button-negative-hover": 1,
+    "--opacity-disabled": 3,
+    "--overlay-background": 1,
+    "--table-header-cell-bg": 1,
+    "--table-header-cell-text": 1,
+    "--status-info": 1,
+    "--theme-background": 5,
+    "--background-color-content": 1,
+    "--status-notification": 1,
+    "--interactive-primary-hover": 1
+  },
+  "usage_by_filetype": {
+    "css": 7,
+    "js": 0,
+    "other": 0
+  }
+}

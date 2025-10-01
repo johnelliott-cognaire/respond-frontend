@@ -1,0 +1,124 @@
+/* Status Dropdown Component 
+   Used for selectable status indicators in forms and filter menus
+
+   styles/components/status-dropdown.css
+*/
+
+.status-dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-width: 120px;
+  }
+  
+  .status-dropdown-wrapper .status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--surface-default);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+  }
+  
+  .status-dropdown-wrapper .status i {
+    margin-left: 8px;
+    transition: transform 0.2s;
+  }
+  
+  .status-dropdown-wrapper.open .status i {
+    transform: rotate(180deg);
+  }
+  
+  .status-dropdown-options {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    min-width: 130px;
+    background: var(--surface-default, #ffffff);
+    border: 1px solid var(--input-border, #ced4da);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    margin-top: 2px;
+  }
+  
+  .status-dropdown-wrapper.open .status-dropdown-options {
+    display: block;
+  }
+  
+  .status-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .status-option:hover {
+    background: var(--interactive-hover, rgba(14, 48, 72, 0.1));
+  }
+  
+  .status-option.selected {
+    background: var(--interactive-hover, rgba(14, 48, 72, 0.1));
+    font-weight: 500;
+  }
+  
+  /* Status component itself */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .status:hover {
+    background: var(--interactive-hover);
+}
+  
+  /* Status variants */
+  .status--new {
+      border-color: #6c757d;
+      color: #6c757d;
+  }
+
+  .status--in-progress {
+      border-color: #17a2b8;
+      color: #17a2b8;
+  }
+
+  .status--ready {
+      border-color: #20c997;
+      color: #20c997;
+  }
+
+  .status--submitted {
+      border-color: #28a745;
+      color: #28a745;
+  }
+
+  .status--running {
+    background-color: var(--job-status-running-muted, rgba(255, 193, 7, 0.4));
+    color: var(--job-status-running, #ffc107);
+  }
+  
+  .status--completed {
+    background-color: var(--job-status-completed-muted, rgba(40, 167, 69, 0.4));
+    color: var(--job-status-completed, #28a745);
+  }
+  
+  .status--failed {
+    background-color: var(--job-status-failed-muted, rgba(220, 53, 69, 0.4));
+    color: var(--job-status-failed, #dc3545);
+  }
+  
+  .status--cancelled,
+  .status--stopped {
+    background-color: var(--job-status-cancelled-muted, rgba(108, 117, 125, 0.4));
+    color: var(--job-status-cancelled, #6c757d);
+  }

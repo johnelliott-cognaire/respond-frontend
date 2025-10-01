@@ -1,0 +1,7 @@
+{
+    "form-modal": "modal--form",
+    "simple-modal": "modal--simple",
+    "narrow-modal": "modal--narrow",
+    "import-wizard-modal": "modal--import-wizard",
+    "modal-close": "modal__close"
+  }

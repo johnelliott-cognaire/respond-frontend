@@ -1,0 +1,154 @@
+/* File: styles/tabs-legacy.css - Updated Version */
+
+/* Tab bar wrapper - John E 28 April 2025 - check whether this style is actually set or is redundant */
+.tab-bar-wrapper {
+  display: flex;
+  align-items: center;
+  background: var(--surface-background);
+  border-bottom: 1px solid var(--border-subtle);
+  margin: 0 20px;
+  width: auto;
+  height: 40px; /* Increased height for better usability */
+  max-width: 100%;
+}
+
+#tabsRoot {
+  flex: 1;
+  min-width: 0;
+  /*overflow: hidden;*/
+}
+
+/* Tabs container and scroller */
+.tabs-container {
+  width: 100%;
+  /*overflow: hidden;*/
+  flex: 1;        /* if in a row of flex items */
+  min-width: 0;   /* allow the container to shrink/scroll */
+}
+
+.tabs-scroller {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+  margin-bottom: -20px;
+}
+
+
+.tabs-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll buttons */
+.scroll-btn {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 40px; /* Match tab-bar-wrapper height */
+  margin: 0px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.scroll-btn:hover {
+  color: var(--interactive-primary);
+}
+
+/* Tab styling */
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 150px;
+  max-width: 250px;
+  height: 40px; /* Fixed height for consistency */
+  padding: 0 12px;
+  margin: 0 2px 0 0;
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+  background-color: var(--surface-alt); /* Light gray for inactive tabs */
+  color: var(--text-secondary);
+  border-radius: 4px 4px 0 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.tab.active {
+  background-color: var(--surface-default); /* White for active tab, matching content */
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  /* Add bottom border same as background to "remove" the border visually */
+  border-bottom: 1px solid var(--surface-default);
+  margin-bottom: -1px; /* Offset the bottom border */
+  z-index: 2;
+  /* Subtle top highlight to show active state */
+  box-shadow: inset 0 3px 0 var(--interactive-primary);
+}
+
+.tab i {
+  font-size: 14px;
+  color: inherit;
+}
+
+.tab-label {
+  flex: 1;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.tab .tab-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s, background-color 0.2s;
+  border-radius: 50%;
+}
+
+.tab .tab-close:hover {
+  opacity: 1;
+  background-color: var(--interactive-hover);
+}
+
+/* New tab button */
+.new-tab-button {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  margin: 0 4px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.new-tab-button:hover {
+  color: var(--interactive-primary);
+  background-color: var(--interactive-hover);
+  border-color: var(--interactive-primary);
+}

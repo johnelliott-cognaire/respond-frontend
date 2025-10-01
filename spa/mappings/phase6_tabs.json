@@ -1,0 +1,9 @@
+{
+    "tab-scroll-button": "scroll-btn",
+    "left-scroll": "scroll-btn--left",
+    "right-scroll": "scroll-btn--right",
+    "excel-tabs-container": "excel-tabs-container",
+    "grid-tabs-scroller": "grid-tabs-scroller",
+    "excel-tab": "excel-tab",
+    "tab-add-button": "tab-add-button"
+  }

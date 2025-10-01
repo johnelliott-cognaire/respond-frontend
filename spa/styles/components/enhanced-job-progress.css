@@ -1,0 +1,239 @@
+/* Enhanced Job Progress Styles - Phase 2
+ * AG-Grid compatible visual progress indicators and TopBar enhancements
+ * Uses design tokens for consistency with application theme
+ */
+
+/* ============================
+ * Enhanced TopBar Job Progress
+ * ============================ */
+
+/* Enhanced progress container */
+.job-progress-enhanced {
+    margin-top: 8px;
+    padding: 6px 0;
+}
+
+/* Enhanced progress bar with shimmer effect */
+.progress-bar-enhanced {
+    height: 6px;
+    background: var(--surface-subtle, #e9ecef);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.progress-fill-enhanced {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        var(--interactive-primary, #0e3048) 0%, 
+        var(--interactive-accent, #135c79) 100%);
+    border-radius: 3px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+/* Animated shimmer effect for active progress */
+.progress-shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%);
+    animation: progress-shimmer 2s infinite;
+}
+
+.job-item.running .progress-shimmer {
+    animation-play-state: running;
+}
+
+.job-item:not(.running) .progress-shimmer {
+    animation-play-state: paused;
+    opacity: 0;
+}
+
+@keyframes progress-shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Progress details container */
+.progress-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+.progress-text-enhanced {
+    color: var(--text-primary, #333333);
+    font-weight: 500;
+}
+
+.progress-phase {
+    color: var(--text-secondary, #666666);
+    font-style: italic;
+}
+
+/* Time estimate */
+.time-estimate {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    color: var(--text-muted, #999999);
+}
+
+.time-estimate i {
+    font-size: 9px;
+}
+
+/* ============================
+ * Enhanced Control Pane AI Button
+ * ============================ */
+
+/* Processing state for AI button */
+.ai-answer-btn.processing {
+    pointer-events: none;
+    opacity: 0.8;
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-answer-btn.processing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%);
+    animation: button-processing-wave 1.8s infinite;
+}
+
+@keyframes button-processing-wave {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Enhanced model display with indicators */
+.job-metadata .model-enhanced {
+    position: relative;
+}
+
+.job-metadata .enhanced-indicator {
+    color: var(--status-success, #28a745);
+    margin-left: 2px;
+}
+
+/* ============================
+ * Enhanced Job Status Indicators
+ * ============================ */
+
+/* Enhanced status badges */
+.status-badge.running {
+    animation: status-pulse 2s infinite;
+}
+
+@keyframes status-pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Enhanced job item states */
+.job-item.queued {
+    border-left: 3px solid var(--status-warning, #ffc107);
+}
+
+.job-item.running {
+    border-left: 3px solid var(--interactive-primary, #0e3048);
+    background: linear-gradient(90deg, 
+        var(--surface-subtle, #f8f9fa) 0%, 
+        var(--surface-default, #ffffff) 100%);
+}
+
+.job-item.completed {
+    border-left: 3px solid var(--status-success, #28a745);
+}
+
+.job-item.failed {
+    border-left: 3px solid var(--status-error, #dc3545);
+}
+
+/* ============================
+ * Responsive Design
+ * ============================ */
+
+@media (max-width: 768px) {
+    .progress-details {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+    
+    .time-estimate {
+        font-size: 9px;
+    }
+    
+    .progress-phase {
+        font-size: 10px;
+    }
+}
+
+/* ============================
+ * Accessibility Enhancements
+ * ============================ */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .progress-shimmer,
+    .ai-answer-btn.processing::after {
+        animation: none;
+    }
+    
+    .status-badge.running {
+        animation: none;
+    }
+    
+    .progress-fill-enhanced {
+        transition: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .progress-bar-enhanced {
+        border: 1px solid;
+    }
+    
+    .progress-fill-enhanced {
+        background: var(--text-primary, #333333);
+    }
+    
+    .job-item.running,
+    .job-item.queued,
+    .job-item.completed,
+    .job-item.failed {
+        border-left-width: 4px;
+    }
+}
+
+/* Focus styles for accessibility */
+.job-item:focus-within {
+    outline: 2px solid var(--interactive-primary, #0e3048);
+    outline-offset: 2px;
+}
+
+.action-btn:focus {
+    outline: 2px solid var(--interactive-primary, #0e3048);
+    outline-offset: 1px;
+}

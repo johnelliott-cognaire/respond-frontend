@@ -1,0 +1,54 @@
+/* components/document-item-history.css */
+
+.loading-placeholder {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+  }
+  
+  .revision-details {
+    padding: 0.5rem;
+  }
+  
+  .revision-detail-field {
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 0.5rem;
+  }
+  
+  .revision-detail-field:last-child {
+    border-bottom: none;
+  }
+  
+  .empty-value {
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+  
+  .history-metadata-section {
+    margin: 20px 15px 20px 15px;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-subtle);
+  }
+
+  .history-metadata-title {
+    padding-bottom: 10px;
+  }
+  
+  .history-metadata-item {
+    display: flex;
+    margin-bottom: 0.25rem;
+  }
+  
+  .history-metadata-label {
+    font-weight: bold;
+    width: 150px;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .history-metadata-value {
+    flex-grow: 1;
+    font-size: 13px;
+  }

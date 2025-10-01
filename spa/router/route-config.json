@@ -1,0 +1,1476 @@
+{
+  "$schema": "./route-config.schema.json",
+  "version": "1.0.0",
+  "globalSettings": {
+    "preserveQueryParams": [
+      "s",
+      "key"
+    ],
+    "defaultRoute": "docs",
+    "errorRoute": "docs",
+    "enableHistoryMode": true,
+    "enableDeepLinking": true,
+    "maxHistoryDepth": 50,
+    "routeTransitionDelay": 100,
+    "enableAnalytics": true,
+    "urlValidation": {
+      "entityIdPatterns": {
+        "document": "^[A-Z]{3}-\\d{3,6}$",
+        "project": "^proj_[a-z0-9]{8,16}$",
+        "user": "^user_[a-z0-9]{8,12}$",
+        "corpus_document": "^[a-z0-9_\\/.\\-]+$"
+      },
+      "strictValidation": true,
+      "showValidationErrors": true
+    }
+  },
+  "routes": [
+    {
+      "id": "auth",
+      "path": "auth",
+      "title": "Authentication",
+      "description": "User authentication and registration flow",
+      "component": {
+        "type": "view",
+        "factory": "createAuthView",
+        "module": "ui/views/tab-manager.js",
+        "className": "auth-view"
+      },
+      "access": {
+        "requiresAuth": false
+      },
+      "navigation": {
+        "showInNavigation": false,
+        "order": 0
+      },
+      "meta": {
+        "pageTitle": "Sign In - Cognaire Respond",
+        "breadcrumbs": false,
+        "analyticsId": "auth_flow"
+      }
+    },
+    {
+      "id": "docs",
+      "path": "docs",
+      "title": "Documents",
+      "description": "Tabbed document workspace for multi-stage workflow management. Users can create and manage document task workflows including RFP responses and security questionnaires. Provides a tabbed interface with document creation (+ button), tab navigation, and integrated multi-stage document processing.",
+      "component": {
+        "type": "view",
+        "factory": "createDocumentWorkspace",
+        "module": "ui/views/tab-manager.js",
+        "className": "document-workspace"
+      },
+      "access": {
+        "requiresAuth": true,
+        "permissionsAnyOf": [
+          "PROJECT_VIEWER",
+          "PROJECT_EDITOR"
+        ],
+        "enforcePermissions": false
+      },
+      "children": [
+        {
+          "id": "rfp_workflow",
+          "path": "rfp_workflow",
+          "title": "RFP Workflow",
+          "description": "5-stage RFP workflow (rfp_question_list_new_framework): Upload Questions, Strategy Review, Answer Questions, Review Answers, Submission Preparation.",
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_VIEWER",
+              "PROJECT_EDITOR"
+            ],
+            "enforcePermissions": false
+          }
+        },
+        {
+          "id": "security_questionnaire",
+          "path": "security_questionnaire",
+          "title": "Security Questionnaire",
+          "description": "4-stage security assessment workflow (security_questionnaire_workflow): Upload Questions, Analysis, Answer Questions, Review Answers.",
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_VIEWER",
+              "PROJECT_EDITOR"
+            ],
+            "enforcePermissions": false
+          }
+        }
+      ],
+      "navigation": {
+        "showInNavigation": true,
+        "icon": "document",
+        "order": 1
+      },
+      "meta": {
+        "pageTitle": "Documents - Cognaire Respond",
+        "breadcrumbs": true,
+        "analyticsId": "docs_workspace"
+      }
+    },
+    {
+      "id": "corpus",
+      "path": "corpus",
+      "title": "Corpus Management",
+      "description": "Knowledge base administration and content management",
+      "component": {
+        "type": "view",
+        "factory": "createCorpusManager",
+        "module": "ui/views/corpus-manager.js",
+        "className": "corpus-manager"
+      },
+      "access": {
+        "requiresAuth": true,
+        "permissionsAnyOf": [
+          "CORPUS_VIEWER",
+          "CORPUS_EDITOR",
+          "CORPUS_ADMIN"
+        ],
+        "enforcePermissions": true
+      },
+      "entitySupport": {
+        "enabled": true,
+        "paramName": "corpusDocumentPath",
+        "pattern": "^[a-z0-9_\\/.\\-]+$",
+        "description": "Corpus document path: lowercase letters, numbers, underscores, slashes, dots, hyphens",
+        "examples": [
+          "policies/security.pdf",
+          "guides/user-manual.docx",
+          "templates/rfp-template.xlsx"
+        ],
+        "validation": {
+          "apiEndpoint": "/api/corpus/documents/validate",
+          "cacheTime": 600,
+          "required": false,
+          "errorMessage": "Corpus document path must contain only lowercase letters, numbers, underscores, slashes, dots, and hyphens"
+        }
+      },
+      "children": [
+        {
+          "id": "browse",
+          "path": "browse",
+          "title": "Browse",
+          "description": "Browse and manage corpus documents",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "hierarchyPath",
+            "pattern": "^[a-z0-9_\\-/]*$",
+            "description": "Hierarchical corpus path: domain/unit/document-topic",
+            "examples": [
+              "respond",
+              "respond/respond-rfp",
+              "respond/respond-rfp/functional"
+            ],
+            "required": false
+          },
+          "component": {
+            "type": "view",
+            "factory": "createCorpusBrowseView",
+            "module": "ui/views/corpus/corpus-browse-view.js"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_VIEWER",
+              "CORPUS_EDITOR"
+            ],
+            "enforcePermissions": false
+          },
+          "navigation": {
+            "showInNavigation": true,
+            "icon": "folder",
+            "order": 1
+          }
+        },
+        {
+          "id": "approvals",
+          "path": "approvals",
+          "title": "Approvals",
+          "description": "Document approval workflow",
+          "component": {
+            "type": "view",
+            "factory": "createCorpusApprovalsView",
+            "module": "ui/views/corpus/corpus-approvals-view.js"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_APPROVER"
+            ],
+            "enforcePermissions": false
+          },
+          "navigation": {
+            "showInNavigation": true,
+            "icon": "checkmark",
+            "order": 2,
+            "badge": {
+              "enabled": true,
+              "source": "corpus.pendingApprovals",
+              "color": "warning"
+            }
+          }
+        },
+        {
+          "id": "types",
+          "path": "types",
+          "title": "Document Types",
+          "description": "Manage document type taxonomy",
+          "component": {
+            "type": "view",
+            "factory": "createDocumentTypesView",
+            "module": "ui/views/corpus/corpus-document-types-view.js"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "navigation": {
+            "showInNavigation": true,
+            "icon": "tags",
+            "order": 3
+          }
+        },
+        {
+          "id": "topics",
+          "path": "topics",
+          "title": "Topics",
+          "description": "Manage document topics and categories",
+          "component": {
+            "type": "view",
+            "factory": "createDocumentTopicsView",
+            "module": "ui/views/corpus/corpus-document-topics-view.js"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "navigation": {
+            "showInNavigation": true,
+            "icon": "category",
+            "order": 4
+          }
+        },
+        {
+          "id": "labels",
+          "path": "labels",
+          "title": "Labels",
+          "description": "Manage document labels and tags",
+          "component": {
+            "type": "view",
+            "factory": "createCorpusLabelsView",
+            "module": "ui/views/corpus/corpus-labels-view.js"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "navigation": {
+            "showInNavigation": true,
+            "icon": "label",
+            "order": 5
+          }
+        },
+        {
+          "id": "groups",
+          "path": "groups",
+          "title": "User Groups",
+          "description": "User group management and permissions",
+          "component": {
+            "type": "view",
+            "factory": "createUserGroupsView",
+            "module": "ui/views/corpus/manage-user-groups-view.js"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "SYSTEM_ADMIN",
+              "APP_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "navigation": {
+            "showInNavigation": true,
+            "icon": "users",
+            "order": 6
+          }
+        }
+      ],
+      "modals": [
+        {
+          "id": "import_wizard",
+          "title": "Import Content Wizard",
+          "purpose": "Comprehensive multi-step content import wizard for corpus documents. Steps: (1) Select import method (file upload, URL import, text paste), (2) Text entry interface for direct content, (3) File upload with format validation, (4) Column mapping for structured data, (5) Import preview and validation, (6) Import confirmation with metadata assignment, (7) Import results with success/error reporting. Supports complex document processing, metadata extraction, and batch import operations.",
+          "component": {
+            "type": "modal",
+            "factory": "createImportContentWizard",
+            "module": "ui/modals/corpus-content-import-modal.js",
+            "className": "import-content-wizard"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_EDITOR",
+              "CORPUS_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true,
+            "wizard": true
+          }
+        },
+        {
+          "id": "document_history",
+          "title": "Document History",
+          "purpose": "Detailed corpus document version history and change tracking including upload timeline, content modifications, approval status changes, metadata updates, and user attributions. Provides comprehensive audit trail for compliance and quality assurance with rollback capabilities.",
+          "component": {
+            "type": "modal",
+            "factory": "createDocumentHistoryModal",
+            "module": "ui/modals/corpus-document-history-modal.js",
+            "className": "document-history-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_VIEWER",
+              "CORPUS_EDITOR",
+              "CORPUS_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true
+          }
+        },
+        {
+          "id": "topic_assignment",
+          "title": "Assign Topics",
+          "purpose": "Document topic and category assignment interface for organizing corpus content. Supports bulk topic assignment, hierarchical topic selection, custom topic creation, and intelligent topic suggestions based on document content analysis.",
+          "component": {
+            "type": "modal",
+            "factory": "createTopicAssignmentModal",
+            "module": "ui/modals/corpus-document-topic-assign-modal.js",
+            "className": "topic-assignment-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_EDITOR",
+              "CORPUS_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true
+          }
+        },
+        {
+          "id": "content_editor",
+          "title": "Content Editor",
+          "purpose": "Advanced document content editor for corpus documents with syntax highlighting, version tracking, and collaborative editing features. Supports multiple document formats and provides real-time preview capabilities.",
+          "component": {
+            "type": "modal",
+            "factory": "ContentEditorModal",
+            "module": "ui/modals/content-editor-modal.js",
+            "className": "content-editor-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_EDITOR",
+              "CORPUS_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true,
+            "resizable": true
+          }
+        },
+        {
+          "id": "choose_content_for_ai",
+          "title": "Choose Content for AI",
+          "purpose": "Content selection interface for AI-powered question answering. Allows users to filter and select specific corpus domains, units, document topics, and types for targeted AI responses. Includes favorite selection management and context optimization.",
+          "component": {
+            "type": "modal",
+            "factory": "ChooseContentForAIModal",
+            "module": "ui/modals/choose-content-for-ai-modal.js",
+            "className": "choose-content-ai-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_VIEWER",
+              "PROJECT_EDITOR"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "corpus_filter",
+          "title": "Corpus Filter",
+          "purpose": "Advanced filtering interface for corpus document browsing and management. Provides multi-dimensional filtering by document type, topic, status, author, date ranges, and custom metadata fields.",
+          "component": {
+            "type": "modal",
+            "factory": "CorpusFilterModal",
+            "module": "ui/modals/corpus-filter-modal.js",
+            "className": "corpus-filter-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_VIEWER",
+              "CORPUS_EDITOR"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true
+          }
+        },
+        {
+          "id": "question_detail",
+          "title": "Question Detail",
+          "purpose": "Detailed view and editing interface for individual questions in document workflows. Displays question text, context, response options, AI suggestions, compliance requirements, and version history.",
+          "component": {
+            "type": "modal",
+            "factory": "QuestionDetailModal",
+            "module": "ui/modals/question-detail-modal.js",
+            "className": "question-detail-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_VIEWER",
+              "PROJECT_EDITOR"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "question_import",
+          "title": "Question Import Wizard",
+          "purpose": "Multi-step wizard for importing questions from external sources. Steps: (1) Select import method (Excel, CSV, text), (2) File selection/upload, (3) Text paste interface, (4) Column mapping configuration, (5) Data preview and validation, (6) Import confirmation and settings, (7) Import results and error reporting. Handles complex data transformation and validation.",
+          "component": {
+            "type": "modal",
+            "factory": "QuestionImportModal",
+            "module": "ui/modals/question-import-modal.js",
+            "className": "question-import-wizard"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_EDITOR"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true,
+            "wizard": true
+          }
+        },
+        {
+          "id": "document_item_history",
+          "title": "Document Item History",
+          "purpose": "Comprehensive version history and change tracking for document items including questions and responses. Shows edit timeline, user attributions, content diffs, status changes, and rollback capabilities.",
+          "component": {
+            "type": "modal",
+            "factory": "DocumentItemHistoryModal",
+            "module": "ui/modals/document-item-history-modal.js",
+            "className": "document-item-history-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_VIEWER",
+              "PROJECT_EDITOR"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true
+          }
+        },
+        {
+          "id": "vector_index_management",
+          "title": "Vector Index Management",
+          "purpose": "Advanced vector search index management for AI-powered semantic search. Manages index creation, deletion, status monitoring, vectorization job triggering, and performance analytics. Supports hierarchical indexing strategies and corpus section targeting.",
+          "component": {
+            "type": "modal",
+            "factory": "VectorIndexManagementModal",
+            "module": "ui/modals/vector-index-management-modal.js",
+            "className": "vector-index-management-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "SYSTEM_ADMIN",
+              "APP_ADMIN"
+            ],
+            "enforcePermissions": true
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "vector_search_preview",
+          "title": "Vector Search Preview",
+          "purpose": "Interactive preview and testing interface for vector-based semantic search. Allows real-time query testing, similarity score analysis, result ranking evaluation, and search parameter tuning.",
+          "component": {
+            "type": "modal",
+            "factory": "VectorSearchPreviewModal",
+            "module": "ui/modals/vector-search-preview-modal.js",
+            "className": "vector-search-preview-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "SYSTEM_ADMIN",
+              "APP_ADMIN"
+            ],
+            "enforcePermissions": true
+          },
+          "meta": {
+            "size": "large",
+            "closable": true
+          }
+        },
+        {
+          "id": "question_grid_analytics",
+          "title": "Question Grid Analytics",
+          "purpose": "Advanced analytics and reporting for question grids including completion rates, response quality metrics, time-to-completion analysis, and team performance insights. Provides visual dashboards and exportable reports.",
+          "component": {
+            "type": "modal",
+            "factory": "QuestionGridAnalyticsModal",
+            "module": "ui/modals/question-grid-analytics-modal.js",
+            "className": "question-grid-analytics-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_VIEWER"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true
+          }
+        }
+      ],
+      "transitions": {},
+      "navigation": {
+        "showInNavigation": true,
+        "icon": "database",
+        "order": 2
+      },
+      "meta": {
+        "pageTitle": "Corpus Management - Cognaire Respond",
+        "breadcrumbs": true,
+        "analyticsId": "corpus_management"
+      }
+    },
+    {
+      "id": "modals",
+      "path": "modals",
+      "title": "Application Modals",
+      "description": "Consolidated modal interface for all critical application functionality",
+      "purpose": "Centralized modal routing for users, accounts, projects, documents management, and system utilities. Provides direct URL access to all major application modals with entity-specific routing support.",
+      "component": {
+        "type": "modal",
+        "factory": "renderModalRoute",
+        "description": "Special handler for modal-only routes that shows modals instead of views"
+      },
+      "access": {
+        "requiresAuth": true,
+        "permissionsAnyOf": [
+          "PROJECT_VIEWER",
+          "PROJECT_EDITOR",
+          "SYSTEM_ADMIN",
+          "APP_ADMIN"
+        ],
+        "enforcePermissions": false
+      },
+      "entitySupport": {
+        "enabled": true,
+        "paramName": "entityId",
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "description": "Entity ID for modal context (account ID, project ID, etc.)",
+        "examples": [
+          "QS",
+          "proj_123",
+          "user_456"
+        ],
+        "validation": {
+          "required": false,
+          "errorMessage": "Entity ID must contain only letters, numbers, underscores, and hyphens"
+        }
+      },
+      "navigation": {
+        "showInNavigation": false,
+        "order": 99
+      },
+      "meta": {
+        "pageTitle": "{{modal.title || 'Application Modal'}} - Cognaire Respond",
+        "breadcrumbs": false,
+        "analyticsId": "modal_interface"
+      },
+      "modals": [
+        {
+          "id": "users",
+          "title": "Users Management",
+          "purpose": "Comprehensive user management interface for listing, searching, and managing users across the organization. Supports user filtering, bulk operations, access control management, and integration with accounts and projects. Provides user creation, editing, and permission management capabilities.",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "accountId",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "description": "Optional Account ID for filtering users by account context",
+            "required": false
+          },
+          "component": {
+            "type": "modal",
+            "factory": "UsersModal",
+            "className": "users-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "accounts",
+          "title": "Accounts Management",
+          "purpose": "Account management interface for organizational account structure. Handles account listing, searching, creation, and configuration. Manages account-level permissions, user assignments, project associations, and billing relationships.",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "ownerUsername",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "description": "Optional Owner Username for filtering accounts by owner",
+            "required": false
+          },
+          "component": {
+            "type": "modal",
+            "factory": "AccountsModal",
+            "className": "accounts-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true,
+            "pageTitle": "Account Management - Cognaire Respond"
+          }
+        },
+        {
+          "id": "account",
+          "title": "Account Details",
+          "purpose": "Detailed account management interface for configuring individual accounts including settings, user associations, project management, billing information, and account-specific permissions. Provides comprehensive account administration capabilities.",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "accountId",
+            "pattern": "^(new|[a-zA-Z0-9_-]+)$",
+            "description": "Account ID for direct account access or 'new' for account creation",
+            "required": true
+          },
+          "component": {
+            "type": "modal",
+            "factory": "AccountModal",
+            "className": "account-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "projects",
+          "title": "Projects Management",
+          "purpose": "Project management interface for organizational project structure. Handles project listing, searching, creation, and configuration. Manages project-level permissions, user assignments, document associations, and workflow settings.",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "accountId",
+            "secondaryParam": "projectId",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "description": "Account ID for context-specific project access",
+            "required": true
+          },
+          "component": {
+            "type": "modal",
+            "factory": "ProjectsModal",
+            "className": "projects-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_EDITOR",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true
+          }
+        },
+        {
+          "id": "project",
+          "title": "Project Details",
+          "purpose": "Detailed project management interface for configuring individual projects including settings, user assignments, document workflows, corpus connections, and project-specific permissions. Provides comprehensive project administration and configuration capabilities.",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "projectMode",
+            "secondaryParam": "accountId",
+            "pattern": "^(new|[a-zA-Z0-9_-]+)$",
+            "description": "Project mode ('new' for creation) or Project ID, with Account ID for context",
+            "required": true
+          },
+          "component": {
+            "type": "modal",
+            "factory": "ProjectModal",
+            "className": "project-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_EDITOR",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "documents_management",
+          "title": "Documents Management",
+          "purpose": "Document workflow management interface for RFP and questionnaire documents. Provides document listing, status tracking, workflow progression, team assignments, and document lifecycle management across multiple projects.",
+          "component": {
+            "type": "modal",
+            "factory": "DocumentsModal",
+            "module": "ui/modals/documents-modal.js",
+            "className": "documents-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_VIEWER",
+              "PROJECT_EDITOR"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "jobs",
+          "title": "Background Jobs",
+          "purpose": "System background job monitoring and management interface. Displays job queues, execution status, progress tracking, error reporting, and job history. Supports job cancellation, retry operations, and performance analytics for system maintenance.",
+          "component": {
+            "type": "modal",
+            "factory": "JobsModal",
+            "module": "ui/modals/jobs-modal.js",
+            "className": "jobs-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "SYSTEM_ADMIN",
+              "APP_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "admin",
+      "path": "admin",
+      "title": "Administration",
+      "description": "System administration and user management interface",
+      "purpose": "Comprehensive administrative interface for managing users, accounts, projects, permissions, and system-wide settings. Provides centralized control over application configuration, user access, and organizational structure.",
+      "component": {
+        "type": "view",
+        "factory": "createAdminView",
+        "module": "ui/views/tab-manager.js",
+        "className": "admin-view"
+      },
+      "access": {
+        "requiresAuth": true,
+        "permissionsAnyOf": [
+          "SYSTEM_ADMIN",
+          "APP_ADMIN"
+        ],
+        "enforcePermissions": false
+      },
+      "navigation": {
+        "showInNavigation": true,
+        "icon": "settings",
+        "order": 3
+      },
+      "meta": {
+        "pageTitle": "Administration - Cognaire Respond",
+        "breadcrumbs": true,
+        "analyticsId": "admin_interface"
+      },
+      "modals": [
+        {
+          "id": "users",
+          "title": "Users Management",
+          "purpose": "Comprehensive user management interface for listing, searching, and managing users across the organization. Supports user filtering, bulk operations, access control management, and integration with accounts and projects. Provides user creation, editing, and permission management capabilities.",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "accountId",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "description": "Optional Account ID for filtering users by account context",
+            "required": false
+          },
+          "component": {
+            "type": "modal",
+            "factory": "UsersModal",
+            "className": "users-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "user_detail",
+          "title": "User Details",
+          "purpose": "Detailed user profile management including personal information, system permissions, account/project access, and security settings. Supports both admin view for managing other users and self-view for users editing their own profiles. Includes comprehensive permission assignment and user group management.",
+          "component": {
+            "type": "modal",
+            "factory": "UserModal",
+            "className": "user-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "accounts",
+          "title": "Accounts Management",
+          "purpose": "Account management interface for organizational account structure. Handles account listing, searching, creation, and configuration. Manages account-level permissions, user assignments, project associations, and billing relationships.",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "accountId",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "description": "Account ID for direct account access",
+            "required": false
+          },
+          "component": {
+            "type": "modal",
+            "factory": "AccountsModal",
+            "className": "accounts-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "pageTitle": "Account Management - Cognaire Respond"
+          }
+        },
+        {
+          "id": "account_detail",
+          "title": "Account Details",
+          "purpose": "Detailed account management interface for configuring individual accounts including settings, user associations, project management, billing information, and account-specific permissions. Provides comprehensive account administration capabilities.",
+          "component": {
+            "type": "modal",
+            "factory": "AccountModal",
+            "className": "account-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "projects",
+          "title": "Projects Management",
+          "purpose": "Project management interface for organizational project structure. Handles project listing, searching, creation, and configuration. Manages project-level permissions, user assignments, document associations, and workflow settings.",
+          "entitySupport": {
+            "enabled": true,
+            "paramName": "accountId",
+            "secondaryParam": "projectId",
+            "pattern": "^[a-zA-Z0-9_-]+$",
+            "description": "Account ID and optional Project ID for context-specific project access",
+            "required": false
+          },
+          "component": {
+            "type": "modal",
+            "factory": "ProjectsModal",
+            "className": "projects-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_EDITOR",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true
+          }
+        },
+        {
+          "id": "project_detail",
+          "title": "Project Details",
+          "purpose": "Detailed project management interface for configuring individual projects including settings, user assignments, document workflows, corpus connections, and project-specific permissions. Provides comprehensive project administration and configuration capabilities.",
+          "component": {
+            "type": "modal",
+            "factory": "ProjectModal",
+            "className": "project-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_EDITOR",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "user_groups",
+          "title": "User Groups",
+          "purpose": "User group management for organizing users into permission-based groups. Supports group creation, member management, permission assignment, and hierarchical group structures. Enables efficient bulk permission management and organizational user administration.",
+          "component": {
+            "type": "modal",
+            "factory": "UserGroupsModal",
+            "module": "ui/modals/user-groups-modal.js",
+            "className": "user-groups-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true
+          }
+        },
+        {
+          "id": "manage_user_groups",
+          "title": "Manage User Groups",
+          "purpose": "Advanced user group administration interface providing comprehensive group management capabilities including nested groups, bulk member operations, permission inheritance, and group analytics. Supports complex organizational structures and permission hierarchies.",
+          "component": {
+            "type": "modal",
+            "factory": "ManageUserGroupsModal",
+            "module": "ui/modals/manage-user-groups-modal.js",
+            "className": "manage-user-groups-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "user_group_add",
+          "title": "Add User Group",
+          "purpose": "User group creation interface for defining new permission groups. Handles group naming, description, initial permission assignment, and member selection. Supports template-based group creation and permission inheritance configuration.",
+          "component": {
+            "type": "modal",
+            "factory": "UserGroupAddModal",
+            "module": "ui/modals/user-group-add-modal.js",
+            "className": "user-group-add-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "add_corpus_permission",
+          "title": "Add Corpus Permission",
+          "purpose": "Corpus-specific permission assignment interface for granting users or groups access to corpus resources. Manages granular corpus permissions including read, write, approve, and admin access levels across different corpus sections and document types.",
+          "component": {
+            "type": "modal",
+            "factory": "AddCorpusPermissionModal",
+            "module": "ui/modals/add-corpus-permission-modal.js",
+            "className": "add-corpus-permission-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "add_docchain_permission",
+          "title": "Add DocChain Permission",
+          "purpose": "DocChain workflow permission assignment interface for granting access to document processing workflows. Manages permissions for AI analysis processes, document approval chains, and automated content generation workflows.",
+          "component": {
+            "type": "modal",
+            "factory": "AddDocchainPermissionModal",
+            "module": "ui/modals/add-docchain-permission-modal.js",
+            "className": "add-docchain-permission-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "CORPUS_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "duplicate_permissions",
+          "title": "Duplicate Permissions",
+          "purpose": "Permission duplication utility for copying permission sets between users, groups, or organizational entities. Streamlines permission management by allowing bulk permission copying, template application, and permission set synchronization across the organization.",
+          "component": {
+            "type": "modal",
+            "factory": "DuplicatePermissionsModal",
+            "module": "ui/modals/duplicate-permissions-modal.js",
+            "className": "duplicate-permissions-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "APP_ADMIN",
+              "SYSTEM_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "jobs",
+          "title": "Background Jobs",
+          "purpose": "System background job monitoring and management interface. Displays job queues, execution status, progress tracking, error reporting, and job history. Supports job cancellation, retry operations, and performance analytics for system maintenance.",
+          "component": {
+            "type": "modal",
+            "factory": "JobsModal",
+            "module": "ui/modals/jobs-modal.js",
+            "className": "jobs-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "SYSTEM_ADMIN",
+              "APP_ADMIN"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "auth_modals",
+      "path": "auth-modals",
+      "title": "Authentication Modals",
+      "description": "Authentication and user account management modals",
+      "purpose": "Collection of authentication-related modal dialogs for user login, registration, password management, and account security. These modals can be triggered from any part of the application and handle user authentication workflows.",
+      "access": {
+        "requiresAuth": false
+      },
+      "modals": [
+        {
+          "id": "login",
+          "title": "Login",
+          "purpose": "User authentication modal with username/password login, multi-factor authentication support, forgot password link, and new user registration access. Handles secure authentication workflows and session management.",
+          "component": {
+            "type": "modal",
+            "factory": "LoginModal",
+            "module": "ui/modals/login-modal.js",
+            "className": "login-modal"
+          },
+          "access": {
+            "requiresAuth": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "register",
+          "title": "User Registration",
+          "purpose": "New user account creation modal with form validation, terms acceptance, email verification initiation, and account setup guidance. Handles secure user registration workflows and initial account configuration.",
+          "component": {
+            "type": "modal",
+            "factory": "RegisterModal",
+            "module": "ui/modals/register-modal.js",
+            "className": "register-modal"
+          },
+          "access": {
+            "requiresAuth": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "password_reset",
+          "title": "Password Reset",
+          "purpose": "Password reset workflow modal for users who have forgotten their passwords. Handles email verification, secure token validation, new password creation with strength requirements, and password update confirmation.",
+          "component": {
+            "type": "modal",
+            "factory": "PasswordResetModal",
+            "module": "ui/modals/password-reset-modal.js",
+            "className": "password-reset-modal"
+          },
+          "access": {
+            "requiresAuth": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "system_modals",
+      "path": "system-modals",
+      "title": "System Utility Modals",
+      "description": "Core system utility modals used throughout the application",
+      "purpose": "Collection of essential system modal dialogs that provide core functionality across the entire application including error handling, user messaging, confirmations, and data export capabilities.",
+      "access": {
+        "requiresAuth": true
+      },
+      "modals": [
+        {
+          "id": "error",
+          "title": "Error Dialog",
+          "purpose": "System error display modal with detailed error information, technical details toggle, error reporting capabilities, and user-friendly error explanations. Handles both user errors and system exceptions with appropriate messaging.",
+          "component": {
+            "type": "modal",
+            "factory": "ErrorModal",
+            "module": "ui/modals/error-modal.js",
+            "className": "error-modal"
+          },
+          "access": {
+            "requiresAuth": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "message",
+          "title": "Message Dialog",
+          "purpose": "General-purpose message display modal for system notifications, success confirmations, informational alerts, and user guidance messages. Supports custom styling, icons, and action buttons.",
+          "component": {
+            "type": "modal",
+            "factory": "MessageModal",
+            "module": "ui/modals/message-modal.js",
+            "className": "message-modal"
+          },
+          "access": {
+            "requiresAuth": false
+          },
+          "meta": {
+            "size": "small",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "yesno_confirmation",
+          "title": "Yes/No Confirmation",
+          "purpose": "Binary choice confirmation dialog for user decisions requiring explicit confirmation. Handles dangerous operations, data deletion confirmations, workflow approvals, and critical decision points with clear action labeling.",
+          "component": {
+            "type": "modal",
+            "factory": "YesNoModal",
+            "module": "ui/modals/yesno-modal.js",
+            "className": "yesno-modal"
+          },
+          "access": {
+            "requiresAuth": false
+          },
+          "meta": {
+            "size": "small",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "text_prompt",
+          "title": "Text Input Prompt",
+          "purpose": "Text input dialog for collecting user input including simple text fields, multi-line text areas, validation requirements, and formatted input constraints. Supports various input types and validation patterns.",
+          "component": {
+            "type": "modal",
+            "factory": "TextPromptModal",
+            "module": "ui/modals/text-prompt-modal.js",
+            "className": "text-prompt-modal"
+          },
+          "access": {
+            "requiresAuth": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "export",
+          "title": "Export Data",
+          "purpose": "Data export interface supporting multiple export formats including Excel, CSV, PDF, and JSON. Handles data selection, format configuration, export processing, and download management with progress tracking.",
+          "component": {
+            "type": "modal",
+            "factory": "ExportModal",
+            "module": "ui/modals/export-modal.js",
+            "className": "export-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_EDITOR",
+              "PROJECT_VIEWER"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "options",
+          "title": "Options Configuration",
+          "purpose": "User preference and application option configuration modal. Manages user interface settings, notification preferences, default behaviors, accessibility options, and personalization settings.",
+          "component": {
+            "type": "modal",
+            "factory": "OptionsModal",
+            "module": "ui/modals/options-modal.js",
+            "className": "options-modal"
+          },
+          "access": {
+            "requiresAuth": true
+          },
+          "meta": {
+            "size": "large",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "documents_management",
+          "title": "Documents Management",
+          "purpose": "Document workflow management interface for RFP and questionnaire documents. Provides document listing, status tracking, workflow progression, team assignments, and document lifecycle management across multiple projects.",
+          "component": {
+            "type": "modal",
+            "factory": "DocumentsModal",
+            "module": "ui/modals/documents-modal.js",
+            "className": "documents-modal"
+          },
+          "access": {
+            "requiresAuth": true,
+            "permissionsAnyOf": [
+              "PROJECT_VIEWER",
+              "PROJECT_EDITOR"
+            ],
+            "enforcePermissions": false
+          },
+          "meta": {
+            "size": "xlarge",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "url_validation",
+          "title": "URL Validation",
+          "purpose": "URL validation and error reporting modal that displays when users navigate to invalid or inaccessible URLs. Provides helpful error messages, suggests valid alternatives, and guides users to appropriate application sections.",
+          "component": {
+            "type": "modal",
+            "factory": "URLValidationModal",
+            "module": "ui/modals/url-validation-modal.js",
+            "className": "url-validation-modal"
+          },
+          "access": {
+            "requiresAuth": false
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        },
+        {
+          "id": "modal_selection",
+          "title": "Modal Selection",
+          "purpose": "Dynamic modal selection interface used by the system to present users with choices of available modal actions based on context. Provides intelligent modal routing and user guidance for complex workflows.",
+          "component": {
+            "type": "modal",
+            "factory": "ModalSelection",
+            "module": "ui/modals/modal-selection.js",
+            "className": "modal-selection"
+          },
+          "access": {
+            "requiresAuth": true
+          },
+          "meta": {
+            "size": "medium",
+            "closable": true,
+            "backdrop": true
+          }
+        }
+      ]
+    }
+  ]
+}

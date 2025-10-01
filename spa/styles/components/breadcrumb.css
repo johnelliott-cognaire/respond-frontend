@@ -1,0 +1,106 @@
+/* Breadcrumb Navigation Component
+   Used for document stage navigation
+
+   styles/components/breadcrumb.css
+*/
+
+/* Stage Breadcrumb Container */
+.doc-stage-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 0px;
+    background-color: var(--surface-default, #ffffff);
+    border-bottom: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1));
+  }
+  
+  .doc-stage-breadcrumb .breadcrumb-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary, #666666);
+    margin-right: 8px;
+  }
+  
+  /* Stage Links */
+  .stage-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    padding: 4px 10px;
+    color: var(--text-secondary, #666666);
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .stage-link.active {
+    color: var(--text-primary, #333333);
+    background-color: var(--interactive-hover, rgba(14, 48, 72, 0.1));
+    font-weight: 500;
+  }
+  
+  .stage-link:hover:not(.active) {
+    background-color: var(--surface-alt, #f0f2f5);
+  }
+  
+  /* Stage Number Circle */
+  .stage-link .stage-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--surface-alt, #f0f2f5);
+    color: var(--text-secondary, #666666);
+    font-size: 12px;
+    font-weight: 600;
+    margin-right: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  /* Stage Link States */
+  .stage-link.active .stage-number {
+    background-color: var(--interactive-primary, #0e3048);
+    color: var(--text-on-primary, #ffffff);
+  }
+  
+  .stage-link .stage-number.status--completed,
+  .stage-link .stage-number.completed {
+    background-color: var(--status-success, #28a745);
+    color: var(--text-on-primary, #ffffff);
+  }
+  
+  .stage-link .stage-number.status--running,
+  .stage-link .stage-number.running {
+    background-color: var(--job-status-running, #ffc107);
+    color: #000; /* Dark text on yellow background */
+  }
+  
+  .stage-link .stage-number.status--failed,
+  .stage-link .stage-number.failed {
+    background-color: var(--job-status-failed, #dc3545);
+    color: var(--text-on-primary, #ffffff);
+  }
+  
+  /* Separator Character */
+  .stage-separator {
+    color: var(--text-secondary, #666666);
+    margin: 0 2px;
+    opacity: 0.5;
+  }
+  
+  /* Active Stage with Status */
+  .stage-link.active.running {
+    color: var(--text-primary, #333333);
+    font-weight: 600;
+  }
+  
+  .stage-link.active.failed {
+    color: var(--status-error, #dc3545);
+    font-weight: 600;
+  }

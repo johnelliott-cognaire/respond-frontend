@@ -1,0 +1,29 @@
+/* styles/components/button-group.css */
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.button-group--tight {
+    gap: 8px;
+}
+
+.button-group--center {
+    justify-content: center;
+}
+
+.button-group--right {
+    justify-content: flex-end;
+}
+
+.button-group--left {
+    justify-content: flex-start;
+}
+
+.button-group--justified {
+    justify-content: space-between;
+}

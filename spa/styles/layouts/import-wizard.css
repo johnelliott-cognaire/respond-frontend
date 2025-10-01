@@ -1,0 +1,795 @@
+/* -------------------------------------------------------------------
+ *  File: styles/layouts/import-wizard.css
+ * -------------------------------------------------------------------*/
+
+/* Import Wizard Layout – dedicated multi‑step wizard container */
+
+/* ========== 1. Step Navigation ========== */
+.step-indicator {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--surface-alt);
+  flex-shrink: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  background: none !important;
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: var(--text-on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 5px;
+}
+
+.step.active .step-number {
+  background-color: var(--interactive-primary);
+}
+
+.step.completed .step-number,
+.step.status--completed .step-number {
+  background-color: var(--status-success);
+}
+
+.step-name {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.step.active .step-name {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.step-connector {
+  flex: 1;
+  height: 2px;
+  background-color: #ccc;
+  position: relative;
+  z-index: 0;
+  margin: 0 5px;
+  top: -10px;
+}
+
+/* ========== 2. Generic step wrapper ========== */
+.import-step {
+  padding: 20px;
+  min-height: 0 !important;
+  /* allow content to set height */
+  overflow: visible !important;
+}
+
+.import-step h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.import-step h4 {
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.import-step p {
+  margin: 0 0 20px 0;
+  color: var(--text-secondary);
+}
+
+/* ========== 3. STEP‑SPECIFIC BLOCKS (unchanged from legacy) ==========
+   *  File‑selection, Configure, Preview, Confirm rules retained intact.
+   *  Only token variables swapped in and duplicate declarations removed. */
+
+/* 3a. File‑selection */
+.drag-drop-area {
+  border: 2px dashed var(--border-subtle);
+  border-radius: 6px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-alt);
+  transition: background-color 0.2s, border-color 0.2s;
+  margin-bottom: 20px;
+  min-height: 200px;
+  max-height: 400px;
+  box-sizing: border-box;
+}
+
+.drag-drop-area.dragover {
+  background-color: var(--background-highlight);
+  border-color: var(--interactive-primary);
+}
+
+.drag-drop-icon {
+  font-size: 40px;
+  color: var(--interactive-primary);
+  margin-bottom: 10px;
+}
+
+.drag-drop-text p {
+  margin: 5px 0;
+}
+
+.file-input-label {
+  color: var(--interactive-primary);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: var(--font-weight-bold);
+}
+
+.selected-file-info {
+  margin-bottom: 20px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  background: var(--surface-alt);
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.file-icon {
+  flex-shrink: 0;
+  width: 24px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-details {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.file-name {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-size {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.file-instructions {
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 15px;
+  color: #0d47a1;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #bbdefb;
+}
+
+.change-file-btn {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: var(--text-primary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.change-file-btn:hover {
+  background-color: var(--interactive-hover);
+}
+
+.import-upload-progress {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.import-progress-container {
+  height: 8px;
+  background-color: var(--surface-alt);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.import-progress-bar {
+  height: 100%;
+  background-color: var(--interactive-primary);
+  width: 0;
+  transition: width 0.3s ease;
+}
+
+.import-progress-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* 3b. Configure step */
+.sheet-config-container {
+  border: 1px solid var(--border-subtle);
+  border-top: none;
+  padding: 20px;
+  background-color: var(--surface-default);
+  margin-bottom: 20px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.sheet-config-container.excluded {
+  opacity: .6;
+  pointer-events: none;
+}
+
+.sheet-config-container .content-excluded {
+  opacity: .6;
+  pointer-events: none;
+}
+
+.content-excluded .ro-grid-container {
+  opacity: .6;
+}
+
+.include-exclude-toggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.include-exclude-toggle label {
+  margin-right: 10px;
+  font-weight: var(--font-weight-bold);
+}
+
+.toggle-button-group {
+  display: flex;
+}
+
+.toggle-button {
+  padding: 8px 15px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--surface-alt);
+  cursor: pointer;
+}
+
+.toggle-button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.toggle-button:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+.toggle-button.active {
+  background-color: var(--interactive-primary);
+  color: var(--text-on-primary);
+  border-color: var(--interactive-primary);
+}
+
+.exclude-button.active {
+  background-color: var(--status-error);
+  border-color: var(--status-error);
+}
+
+.start-row-label {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: normal;
+}
+
+.mapping-instructions {
+  margin-bottom: 15px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.required-field-note {
+  color: var(--status-error);
+  font-style: italic;
+}
+
+.mapping-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+}
+
+.mapping-field-label {
+  display: block;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 5px;
+}
+
+.required-mark {
+  color: var(--status-error);
+}
+
+.mapping-field-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+/* 3c. Preview step */
+.preview-container {
+  border-left: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  border-top: 0;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.preview-summary-section {
+  padding: 15px;
+  background-color: var(--background-highlight);
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.preview-summary-label {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 10px;
+}
+
+.preview-summary-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.preview-note {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  background-color: #fffde7;
+  border-radius: 4px;
+  border-left: 4px solid #ffd54f;
+  margin-top: 15px;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.note-icon {
+  margin-right: 10px;
+  color: #ff9800;
+  margin-top: 2px;
+}
+
+.note-text {
+  flex: 1;
+}
+
+/* 3d. Confirm step */
+.import-summary-panel {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.summary-section {
+  padding: 15px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.summary-section:last-child {
+  border-bottom: none;
+}
+
+.summary-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.summary-label {
+  font-weight: var(--font-weight-bold);
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.summary-value {
+  font-size: 15px;
+}
+
+.worksheet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.worksheet-item {
+  background-color: var(--surface-default);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.worksheet-header {
+  padding: 10px 15px;
+  background-color: var(--surface-alt);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: var(--font-weight-bold);
+}
+
+.worksheet-tabs-container {
+  margin-bottom: 0;
+  border: 1px solid var(--border-subtle);
+  border-bottom: none;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background-color: var(--surface-alt);
+}
+
+.import-modal-tabs-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.mappings-list {
+  padding: 10px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mapping-item {
+  background-color: #f1f8ff;
+  border: 1px solid #d1e4fd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.mapping-arrow {
+  margin: 0 8px;
+  color: var(--interactive-primary);
+  font-size: 12px;
+}
+
+.mapping-destination {
+  font-weight: var(--font-weight-bold);
+  color: var(--interactive-primary);
+}
+
+.import-note {
+  display: flex;
+  padding: 15px;
+  background-color: #fffde7;
+  border-radius: 4px;
+  border-left: 4px solid #ffd54f;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+/* 3e. Results step */
+.results-summary-panel {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.worksheet-results-section,
+.skipped-rows-section {
+  padding-top: 20px;
+}
+
+.status-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.success-icon {
+  color: var(--status-success);
+}
+
+.warning-icon {
+  color: var(--status-warning);
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 25px;
+  padding: 10px;
+  background-color: var(--surface-default);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px var(--shadow-subtle);
+}
+
+.stat-item {
+  text-align: center;
+  min-width: 100px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.success-stat .stat-value {
+  color: var(--status-success);
+}
+
+.warning-stat .stat-value {
+  color: var(--status-warning);
+}
+
+.failure-stat .stat-value {
+  color: var(--status-error);
+}
+
+.percentage-stat .stat-value {
+  color: var(--interactive-primary);
+}
+
+/* ------- Results‑step *extras* restored from JS references ------- */
+.summary-message {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.summary-message h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.summary-message p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.failures-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid rgba(var(--status-error), .3);
+  border-radius: 4px;
+  background-color: rgba(var(--status-error), .05);
+}
+
+.failure-info {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.failures-grid-container {
+  margin-bottom: 15px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.failure-download-container {
+  text-align: right;
+}
+
+.download-failures-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-subtle);
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.download-failures-btn:hover:not(:disabled) {
+  background-color: var(--interactive-hover);
+}
+
+.worksheet-results-section {
+  margin-bottom: 20px;
+}
+
+.worksheet-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.worksheet-result-item {
+  padding: 10px 15px;
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+}
+
+.worksheet-result-item.has-errors {
+  background-color: rgba(var(--status-warning), .1);
+  border-color: var(--status-warning);
+}
+
+.worksheet-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.worksheet-result-name {
+  font-weight: var(--font-weight-bold);
+}
+
+.worksheet-result-stats {
+  font-size: 14px;
+}
+
+.success-count {
+  color: var(--status-success);
+  margin-right: 10px;
+}
+
+.error-count {
+  color: var(--status-error);
+}
+
+.next-steps-section {
+  background-color: var(--background-highlight);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+/* ------- Live import progress (step shown while uploading) ------- */
+.import-progress-section {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: var(--surface-alt);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px var(--shadow-subtle);
+}
+
+.import-status-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.status-spinner {
+  font-size: 24px;
+  color: var(--interactive-primary);
+  margin-right: 15px;
+}
+
+.status-text {
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.progress-bar-container {
+  margin-bottom: 20px;
+}
+
+.progress-bar-outer {
+  width: 100%;
+  height: 10px;
+  background-color: var(--surface-background);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.progress-bar-inner {
+  height: 100%;
+  width: 0%;
+  background-color: var(--interactive-primary);
+  border-radius: 5px;
+  transition: width .3s ease;
+}
+
+.progress-percent {
+  text-align: right;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.progress-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.progress-stat {
+  background-color: var(--surface-default);
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px var(--shadow-subtle);
+}
+
+.batch-progress-value,
+.success-count-value,
+.failure-count-value,
+.warning-count-value {
+  font-weight: var(--font-weight-semibold);
+}
+
+.failure-count-value {
+  color: var(--status-error);
+}
+
+.success-count-value {
+  color: var(--status-success);
+}
+
+.warning-count-value {
+  color: var(--status-warning);
+}
+
+/* ------- Utility state helpers (set by JS) ----------------------- */
+.all-success {
+  background-color: rgba(var(--status-success), .08) !important;
+}
+
+.has-warnings {
+  background-color: rgba(var(--status-warning), .08) !important;
+}
+
+.no-data {
+  background-color: rgba(var(--text-muted), .06) !important;
+}

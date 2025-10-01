@@ -1,0 +1,217 @@
+/* Respond SPA Design Tokens - this is rationalise-tokens.css
+ * 
+ * Organized into semantic groups with rationalized values
+ * Includes all tokens actively used in the codebase
+ */
+
+ :root {
+    /* ============================
+     * COLOR SYSTEM
+     * Brand and semantic colors
+     * ============================ */
+    
+    /* Brand Colors - Based on company logo */
+    --color-primary: #0e3048;          /* Main primary color */
+    --color-primary-light: #135c79;    /* Secondary brand color */
+    --color-primary-rgb: 14, 48, 72;   /* For rgba() usage */
+    
+    /* Neutral Colors - Rationalized gray scale */
+    --color-black: #000000;
+    --color-gray-800: #333333;         /* Text primary */
+    --color-gray-700: #495057;         /* Text light */
+    --color-gray-600: #666666;         /* Text secondary */
+    --color-gray-500: #6c757d;         /* Muted text, stopped states */
+    --color-gray-400: #999999;         /* Disabled text */
+    --color-gray-300: #adb5bd;         /* Placeholder text, disabled buttons */
+    --color-gray-200: #ced4da;         /* Borders */
+    --color-white: #ffffff;
+    
+    /* Status Colors - For consistent status indicators */
+    --color-success: #28a745;
+    --color-info: #135c79;             /* Matches primary-light for consistency */
+    --color-warning: #ffc107;
+    --color-error: #dc3545;
+    
+    /* Transparent Colors - For overlays, focus states, etc. */
+    --color-transparent-dark-10: rgba(0, 0, 0, 0.1);
+    --color-transparent-dark-15: rgba(0, 0, 0, 0.15);
+    --color-transparent-dark-20: rgba(0, 0, 0, 0.2);
+    --color-transparent-dark-50: rgba(0, 0, 0, 0.5);
+    
+    --color-primary-transparent-5: rgba(14, 48, 72, 0.05);  /* For primary-color-subtle */
+    --color-primary-transparent-10: rgba(14, 48, 72, 0.1);
+    --color-primary-transparent-20: rgba(14, 48, 72, 0.2);
+  
+    /* ============================
+     * SEMANTIC COLORS
+     * Usage-specific colors
+     * ============================ */
+    
+    /* Text Colors */
+    --text-primary: var(--color-gray-800);
+    --text-secondary: var(--color-gray-600);
+    --text-muted: var(--color-gray-500);
+    --text-light: var(--color-gray-700);
+    --text-disabled: var(--color-gray-400);
+    --text-on-primary: var(--color-white);
+    --text-on-accent: var(--color-white);     /* Added missing token */
+    --text-placeholder: var(--color-gray-300);
+    
+    /* Surface Colors */
+    --surface-background: #f8f9fa;
+    --surface-default: var(--color-white);
+    --surface-alt: #f0f2f5;
+    --surface-tab: var(--surface-background);
+    --surface-dropdown: var(--color-white);
+    --surface-dropdown-hover: var(--surface-background);
+    
+    /* Background Subtleties */
+    --background-subtle: #f9f9f9;
+    --background-highlight: #f0f7ff;
+    --background-color-content: #f8f8f8;     /* Added missing token */
+    
+    /* Interactive Elements */
+    --interactive-primary: var(--color-primary);
+    --interactive-secondary: var(--color-primary-light);
+    --interactive-disabled: var(--color-gray-300);
+    --interactive-hover: var(--color-primary-transparent-10);
+    --interactive-focus: var(--color-primary-transparent-20);
+    
+    /* Interactive States */
+    --interactive-primary-hover: #0c2a40;     /* Slightly darker than primary */
+    --interactive-primary-light: #114d65;     /* Slightly darker than primary-light */
+    --interactive-primary-rgb: var(--color-primary-rgb);  /* Added missing token */
+    --primary-color-subtle: var(--color-primary-transparent-5);
+    --button-secondary-hover: #0f4c65;        /* Added missing token */
+    --button-negative-hover: #bb242f;         /* Added missing token */
+    
+    /* Borders */
+    --border-subtle: var(--color-transparent-dark-10);
+    --border-strong: var(--color-transparent-dark-20);
+    --border-focus: var(--color-primary);
+    --border-input: var(--color-gray-200);
+    --border-tab: #dee2e6;
+    --border-tab-active: var(--color-primary);
+    --border-dropdown: var(--border-tab);
+    --theme-border: var(--border-subtle);     /* Added missing token */
+    
+    /* Surface Borders */
+    --surface-dropdown-border: var(--border-tab);
+    --surface-tab-border-active: var(--color-primary);
+    
+    /* Shadows */
+    --shadow-subtle: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --shadow-strong: rgba(0, 0, 0, 0.3);
+    --shadow-focus: rgba(0, 123, 255, 0.2);
+    --shadow-dropdown: rgba(0, 0, 0, 0.15);
+    
+    /* Status Indicators */
+    --status-error: var(--color-error);
+    --status-success: var(--color-success);
+    --status-warning: var(--color-warning);
+    --status-info: var(--color-info);
+    --status-notification: var(--color-error);
+    
+    /* Job Status Colors */
+    --job-status-failed: var(--color-error);
+    --job-status-running: var(--color-warning);
+    --job-status-completed: var(--color-success);
+    --job-status-cancelled: var(--color-gray-500);
+    --job-status-stopped: var(--color-gray-500);
+    --job-status-not-applicable: var(--color-info);
+    
+    /* Job Status Colors - Muted versions */
+    --job-status-failed-muted: rgba(220, 53, 69, 0.4);     /* Added missing token */
+    --job-status-running-muted: rgba(255, 193, 7, 0.4);    /* Added missing token */
+    --job-status-completed-muted: rgba(40, 167, 69, 0.4);  /* Added missing token */
+    --job-status-cancelled-muted: rgba(108, 117, 125, 0.4); /* Added missing token */
+    --job-status-stopped-muted: rgba(108, 117, 125, 0.4);
+    --job-status-not-applicable-muted: rgba(19, 92, 121, 0.4);
+    
+    /* ============================
+     * TYPOGRAPHY
+     * Font families, sizes, weights
+     * ============================ */
+    
+    /* Font Families */
+    --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-family-secondary: Arial, sans-serif;
+    --font-family-grid: "agGridAlpine";
+    
+    /* Font Sizes - Reduced to only the ones actually used */
+    --font-size-xs: 0.75rem;   /* 12px */
+    --font-size-sm: 0.875rem;  /* 14px */
+    --font-size-base: 1rem;    /* 16px */
+    --font-size-lg: 1.25rem;   /* 20px */
+    --font-size-xl: 1.5rem;    /* 24px */
+    
+    /* Font Weights */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Line Heights */
+    --line-height-tight: 1;
+    --line-height-normal: 1.2;
+    --line-height-relaxed: 1.4;
+    --line-height-loose: 1.5;
+    
+    /* ============================
+     * SPACING
+     * Consistent spacing values
+     * ============================ */
+    
+    /* Spacing - Reduced to only the ones actually used */
+    --spacing-0: 0;
+    --spacing-1: 0.25rem;   /* 4px */
+    --spacing-2: 0.5rem;    /* 8px */
+    --spacing-4: 1rem;      /* 16px */
+    --spacing-8: 2rem;      /* 32px */
+    
+    /* ============================
+     * COMPONENT SPECIFIC
+     * Variables for specific UI components
+     * ============================ */
+    
+    /* Core UI */
+    --opacity-disabled: 0.65;
+    --focus-ring: var(--color-primary-transparent-20);
+    --overlay-bg: var(--color-transparent-dark-50);
+    --overlay-background: var(--color-transparent-dark-50);  /* Added missing token - same as overlay-bg */
+    
+    /* Inputs */
+    --input-bg: var(--color-white);
+    --input-background: var(--color-white);    /* Added missing token - same as input-bg */
+    --input-border: var(--color-gray-200);
+    --input-placeholder: var(--color-gray-300);
+    --input-disabled-bg: #e9ecef;
+    --input-disabled-text: var(--text-disabled);
+    
+    /* Tables and Grids */
+    --table-header-bg: #cfd1d3;
+    --table-header-cell-bg: #cfd1d3;           /* Added missing token - same as table-header-bg */
+    --table-header-text: var(--color-gray-500);
+    --table-header-cell-text: var(--color-gray-500);  /* Added missing token - same as table-header-text */
+    
+    /* Modal Components */
+    --modal-header-bg: var(--surface-default);
+    --modal-footer-border: var(--border-subtle);
+    --modal-overlay: var(--overlay-bg);
+    
+    /* ============================
+     * BACKWARDS COMPATIBILITY
+     * Will be removed in future
+     * ============================ */
+    
+    /* Original theme variables - these are still widely used */
+    --theme-background: var(--surface-background);
+    --theme-surface: var(--surface-default);
+    --theme-surface-alt: var(--surface-alt);
+    --theme-surface-raised: var(--surface-default);
+    --theme-surface-hover: var(--surface-dropdown-hover);  /* Added missing token */
+    --theme-primary: var(--color-primary);                /* Added missing token */
+    --theme-primary-light: var(--color-primary-light);    /* Added missing token */
+    --theme-text-muted: var(--text-muted);                /* Added missing token */
+  }

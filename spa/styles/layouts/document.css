@@ -1,0 +1,225 @@
+/* Document Layout & Structure
+   These styles define the document workspace layout
+   and key structural elements
+
+   styles/layouts/document.css
+*/
+
+/* Document container refinements */
+.doc-container {
+  border: none !important;
+  /* Override any inline border styles */
+  background-color: var(--surface-default);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px var(--shadow-subtle);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+/* Overall Layout Structure for RFP Answer Questions */
+.rfp-answer-questions-stage {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh);
+  /* Adjust based on your header/footer heights */
+  min-height: 500px;
+  border: 0px;
+  border-radius: 4px;
+  overflow: visible;
+  position: relative;
+}
+
+.control-pane-container {
+  flex: 0 0 auto;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--surface-default);
+  z-index: 15;
+}
+
+.grid-container {
+  flex: 1;
+  min-height: 200px;
+  position: relative;
+  border-bottom: none !important;
+  overflow: visible;
+  /* Allow scrolling here */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure grid fills available height, but leaves room for tabs */
+.rfp-form-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-stage-content-wrapper {
+  margin: 0 0 16px 0;
+  padding: 0px;
+}
+
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.doc-meta .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.doc-meta .meta-label {
+  font-weight: 700;
+}
+
+/* Status container and components */
+.status-container {
+  margin-bottom: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--surface-alt);
+  padding: 12px;
+}
+
+.status-label-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.status-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+/* Progress bar styles */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: var(--surface-default);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--interactive-primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Step counter styles */
+.step-counter {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* Status wrapper and button group layout */
+.status-and-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+.disabled-reason {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Responsive Control Pane */
+
+/* Base styles for button labels */
+.control-pane-btn-label {
+  transition: opacity 0.2s ease;
+}
+
+/* AI Answer button special handling - show short version by default */
+.control-pane-btn-label-short {
+  display: inline;
+}
+
+.control-pane-btn-label-full {
+  display: none;
+}
+
+/* Additional improvements for better responsive behavior */
+.responsive-control-pane {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+.responsive-control-pane::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+/* Ensure dropdowns don't break layout on small screens */
+@media (max-width: 600px) {
+  sl-dropdown {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  sl-dropdown sl-button {
+    min-width: 32px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+/* Improve button spacing and prevent wrapping */
+.sub-pane {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sub-pane::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide labels on narrow screens */
+@media (max-width: 768px) {
+  .hide-narrow {
+    display: none;
+  }
+
+  .responsive-control-pane {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-pane,
+  .actions-pane,
+  .answer-pane {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

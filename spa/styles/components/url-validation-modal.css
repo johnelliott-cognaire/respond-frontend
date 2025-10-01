@@ -1,0 +1,424 @@
+/* File: styles/components/url-validation-modal.css */
+/**
+ * URL Validation Modal Styles
+ * 
+ * Comprehensive styling for URL validation error modal with
+ * clear visual hierarchy and helpful user interface elements.
+ */
+
+.url-validation-modal {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.url-error-header {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  padding: var(--spacing-4);
+  background: var(--status-error-subtle);
+  border: 1px solid var(--status-error);
+  border-radius: 6px;
+}
+
+.url-error-icon {
+  font-size: 24px;
+  color: var(--status-error);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.url-error-info h3 {
+  margin: 0 0 var(--spacing-2) 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--status-error-text);
+}
+
+.url-error-url {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.url-code {
+  background: var(--surface-subtle);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: var(--font-family-mono);
+  font-size: 13px;
+  word-break: break-all;
+  color: var(--text-primary);
+}
+
+/* Error Sections */
+.url-error-section {
+  margin-bottom: var(--spacing-5);
+  padding: var(--spacing-4);
+  background: var(--surface-subtle);
+  border-radius: 6px;
+  border-left: 4px solid var(--border-accent);
+}
+
+.url-error-section h4 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: 0 0 var(--spacing-3) 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.url-error-section h4 i {
+  font-size: 16px;
+  color: var(--interactive-primary);
+}
+
+.url-error-section h5 {
+  margin: var(--spacing-3) 0 var(--spacing-2) 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.url-error-section h6 {
+  margin: var(--spacing-2) 0 var(--spacing-1) 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Error Lists */
+.url-error-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-2);
+  display: flex;
+  flex-direction: column;
+}
+
+.url-error-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.url-error-item i {
+  color: var(--status-error);
+  font-size: 12px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.url-error-details {
+  margin-bottom: var(--spacing-3);
+}
+
+.url-error-detail {
+  margin: 0 0 var(--spacing-2) 0;
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* Entity Validation Section */
+.url-entity-section {
+  border-left-color: var(--status-warning);
+}
+
+.url-format-help {
+  margin-top: var(--spacing-3);
+  padding: var(--spacing-3);
+  background: var(--surface-default);
+  border-radius: 4px;
+}
+
+.url-format-description {
+  margin: 0 0 var(--spacing-3) 0;
+  font-size: 14px;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.url-format-examples {
+  margin-top: var(--spacing-3);
+}
+
+.url-example-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-2);
+  display: flex;
+  flex-direction: column;
+}
+
+.url-example {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2);
+  background: var(--surface-subtle);
+  border-radius: 4px;
+}
+
+.url-example code {
+  flex: 1;
+  font-family: var(--font-family-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.url-example-btn {
+  font-size: 12px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+
+/* Modal Validation Section */
+.url-modal-section {
+  border-left-color: var(--interactive-primary);
+}
+
+.url-modal-info {
+  margin: var(--spacing-2) 0;
+  padding: var(--spacing-2);
+  background: var(--surface-default);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.url-modal-info p {
+  margin: 0 0 var(--spacing-1) 0;
+  color: var(--text-secondary);
+}
+
+.url-modal-suggestions {
+  margin-top: var(--spacing-3);
+}
+
+/* Suggestions Section */
+.url-suggestions-section {
+  border-left-color: var(--status-info);
+}
+
+.url-suggestion-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--spacing-2);
+  display: flex;
+  flex-direction: column;
+}
+
+.url-suggestion {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.url-suggestion i {
+  color: var(--status-info);
+  font-size: 12px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Recovery Section */
+.url-recovery-section {
+  border-left-color: var(--status-success);
+}
+
+.url-recovery-options {
+  gap: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+}
+
+.url-recovery-option {
+  padding: var(--spacing-3);
+  background: var(--surface-default);
+  border-radius: 4px;
+}
+
+.url-recovery-option p {
+  margin: 0 0 var(--spacing-3) 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.url-partial-match {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2);
+  background: var(--surface-subtle);
+  border-radius: 4px;
+}
+
+.url-partial-match code {
+  flex: 1;
+  font-family: var(--font-family-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.url-recovery-buttons {
+  display: flex;
+  gap: var(--spacing-2);
+  flex-wrap: wrap;
+}
+
+.url-recovery-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: 13px;
+  padding: 6px 12px;
+  white-space: nowrap;
+}
+
+.url-recovery-btn i {
+  font-size: 12px;
+}
+
+/* Action Section */
+.url-error-actions {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: flex-end;
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.url-error-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: 14px;
+}
+
+.url-error-actions .btn i {
+  font-size: 12px;
+}
+
+/* Notifications */
+.url-validation-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10001;
+  animation: slideInRight 0.3s ease-out;
+}
+
+.url-validation-success {
+  background: var(--status-success-subtle);
+  color: var(--status-success-text);
+  border: 1px solid var(--status-success);
+}
+
+.url-validation-error {
+  background: var(--status-error-subtle);
+  color: var(--status-error-text);
+  border: 1px solid var(--status-error);
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .url-validation-modal {
+    max-width: 100%;
+    padding: 0 var(--spacing-2);
+  }
+
+  .url-error-header {
+    flex-direction: column;
+    gap: var(--spacing-2);
+    text-align: center;
+  }
+
+  .url-error-icon {
+    align-self: center;
+  }
+
+  .url-partial-match {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .url-recovery-buttons {
+    flex-direction: column;
+  }
+
+  .url-recovery-btn {
+    justify-content: center;
+  }
+
+  .url-error-actions {
+    flex-direction: column;
+  }
+
+  .url-error-actions .btn {
+    justify-content: center;
+  }
+}
+
+/* High Contrast Support */
+@media (prefers-contrast: high) {
+  .url-error-section {
+    border-left-width: 6px;
+  }
+
+  .url-validation-notification {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .url-validation-notification {
+    animation: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .url-validation-modal {
+    background: white;
+    color: black;
+  }
+
+  .url-error-actions {
+    display: none;
+  }
+
+  .url-validation-notification {
+    display: none;
+  }
+}

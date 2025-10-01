@@ -1,0 +1,11 @@
+{
+    "btn-primary": "btn--primary",
+    "btn-secondary": "btn--secondary",
+    "btn-danger": "btn--danger",
+    "btn-outline": "btn--outline",
+    "btn-icon": "btn--icon",
+    "btn-sm": "btn--sm", 
+    "btn-lg": "btn--lg",
+    "btn-circle": "btn--circle",
+    "btn": "btn"
+  }

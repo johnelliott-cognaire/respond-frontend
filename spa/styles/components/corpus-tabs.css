@@ -1,0 +1,142 @@
+/* Corpus Management Vertical Tabs
+   Used specifically for the CorpusManager vertical navigation
+   Mirrors the horizontal tabs design language with a vertical orientation
+   
+   styles/components/corpus-tabs.css
+*/
+
+/* Container for the entire corpus management interface */
+.corpus-manager-container {
+    display: flex;
+    height: 100%;
+    min-height: calc(100vh - 180px);
+    background-color: var(--surface-background, #f8f9fa);
+  }
+  
+  /* Vertical navigation wrapper */
+  .vertical-nav-wrapper {
+    flex: 0 0 auto;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+  }
+  
+  /* Navigation list */
+  .corpus-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0px 8px 0px; /* Right padding reduced to connect to content */
+    overflow-y: auto;
+  }
+  
+  /* Individual vertical navigation items - mirroring horizontal tab design */
+  .vertical-nav-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-height: 54px; /* Increased from 56px for better proportion */
+    height: auto; /* Allow height to adjust for wrapping subtext */
+    padding: 10px 12px 10px 16px;
+    margin: 0 0 4px 0;
+    background-color: var(--surface-alt, #f0f2f5); /* Light gray for inactive tabs */
+    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1)); /* All sides have border */
+    border-right: none; /* Remove right border to connect to content */
+    border-radius: 4px 0 0 4px; /* Rounded on left side only */
+    color: var(--text-secondary, #666666);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    position: relative;
+  }
+  
+  .vertical-nav-item:hover {
+    background-color: rgba(240, 242, 245, 0.8); /* Slightly lighter on hover */
+    color: var(--text-primary, #333333);
+  }
+  
+  .vertical-nav-item.active {
+    background-color: var(--surface-default, #ffffff); /* White for active tab */
+    color: var(--text-primary, #333333);
+    border: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.1)); /* Keep all borders */
+    border-right: 1px solid var(--surface-default, #ffffff); /* Hide right border */
+    margin-right: -1px; /* Offset the right border */
+    z-index: 2;
+    /* Subtle left highlight to show active state */
+    box-shadow: inset 3px 0 0 var(--interactive-primary, #0e3048);
+  }
+  
+  /* Icon container within navigation item */
+  .vertical-nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    flex-shrink: 0;
+    margin-top: 2px; /* Slight adjustment for alignment with text */
+  }
+  
+  .vertical-nav-icon i {
+    font-size: 16px;
+    color: inherit;
+  }
+  
+  /* Text content within navigation item */
+  .vertical-nav-content {
+    flex: 1;
+    min-width: 0;
+    padding-top: 1px; /* Fine-tune alignment */
+  }
+  
+  .vertical-nav-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.2;
+  }
+  
+  .vertical-nav-subtext {
+    font-size: 12px;
+    color: var(--text-tertiary, #888888);
+    margin-top: 3px;
+    white-space: normal; /* Allow wrapping */
+    word-wrap: break-word;
+    line-height: 1.3;
+    max-width: 180px; /* Constrain width for better readability */
+  }
+  
+  /* Active state styling for subtext */
+  .vertical-nav-item.active .vertical-nav-subtext {
+    color: var(--text-secondary, #666666);
+  }
+  
+  .corpus-name {
+    font-weight: 500;
+    color: var(--text-primary, #333333);
+  }
+  
+  /* Placeholder content styling */
+  .content-section {
+    min-height: 100%;
+  }
+  
+  .content-section > p {
+    color: var(--text-secondary, #666666);
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  /* Make buttons reset properly */
+  .corpus-nav button {
+    font-family: inherit;
+  }
+  
+  .corpus-nav button:focus {
+    outline: 2px solid var(--interactive-primary, #0e3048);
+    outline-offset: -2px;
+  }

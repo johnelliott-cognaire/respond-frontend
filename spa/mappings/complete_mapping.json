@@ -1,0 +1,38 @@
+{
+    "/* === Phase 1: Buttons === */": "",
+    "btn-primary": "btn--primary",
+    "btn-secondary": "btn--secondary",
+    "btn-danger": "btn--danger",
+    "btn-outline": "btn--outline",
+    "btn-icon": "btn--icon",
+    "btn-sm": "btn--sm", 
+    "btn-lg": "btn--lg",
+    "btn-circle": "btn--circle",
+  
+    "/* === Phase 3: Modals === */": "",
+    "form-modal": "modal--form",
+    "simple-modal": "modal--simple",
+    "narrow-modal": "modal--narrow",
+    "import-wizard-modal": "modal--import-wizard",
+    "modal-close": "modal__close",
+  
+    "/* === Phase 4: Status Components === */": "",
+    "selected-status": "status",
+    "job-status": "status",
+    "status-indicator-icon": "spinner",
+    "status-running": "status--running",
+    "status-completed": "status--completed",
+    "status-failed": "status--failed", 
+    "status-cancelled": "status--cancelled",
+    "status-stopped": "status--stopped",
+    "running": "status--running",
+    "completed": "status--completed",
+    "failed": "status--failed",
+    "cancelled": "status--cancelled",
+    "stopped": "status--stopped",
+  
+    "/* === Phase 6: Excel Tabs === */": "",
+    "tab-scroll-button": "scroll-btn",
+    "left-scroll": "scroll-btn--left",
+    "right-scroll": "scroll-btn--right"
+  }

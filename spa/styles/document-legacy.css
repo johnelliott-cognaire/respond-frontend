@@ -1,0 +1,1100 @@
+/* document-legacy.css */
+
+/**************************************
+ * DOCUMENT LAYOUT & STRUCTURE
+ **************************************/
+
+/* Document container refinements */
+.doc-container {
+  border: none !important; /* Override any inline border styles */
+  background-color: var(--surface-default);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px var(--shadow-subtle);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+/* Overall Layout Structure for RFP Answer Questions */
+.rfp-answer-questions-stage {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 240px); /* Adjust based on your header/footer heights */
+  min-height: 500px;
+  border: 0px;
+  border-radius: 4px;
+  overflow: visible; 
+  position: relative;
+}
+
+.control-pane-container {
+  flex: 0 0 auto;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--surface-default);
+  z-index: 15;
+}
+
+.grid-container {
+  flex: 1;
+  min-height: 200px;
+  position: relative;
+  border-bottom: none !important;
+  overflow: visible; /* Allow scrolling here */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure grid fills available height, but leaves room for tabs */
+.rfp-form-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-stage-content-wrapper {
+  margin: 0 0 16px 0;
+  padding: 0px;
+}
+
+/* Placeholder content styling */
+.doc-placeholder {
+  color: var(--text-secondary);
+  background-color: var(--surface-alt);
+  border-radius: 6px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+/* Footer refinements */
+.doc-footer {
+  margin-top: 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/**************************************
+ * DOCUMENT HEADER
+ **************************************/
+
+/* Document Header - Improved compact version */
+.doc-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background-color: var(--surface-default);
+  border-bottom: 1px solid var(--border-subtle)
+}
+
+.doc-title-container {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+}
+
+.doc-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.doc-title .edit-title-icon {
+  font-size: 14px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+.doc-title .edit-title-icon:hover {
+  opacity: 1;
+  color: var(--interactive-primary);
+}
+
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.doc-meta .meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.doc-meta .meta-label {
+  font-weight: 500;
+}
+
+/**************************************
+ * BREADCRUMB NAVIGATION
+ **************************************/
+
+/* Stage Breadcrumb Navigation - Improved version */
+.doc-stage-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 16px;
+  background-color: var(--surface-default);
+  border-bottom: 1px solid var(--border-subtle)
+}
+
+.doc-stage-breadcrumb .breadcrumb-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 8px;
+}
+
+.stage-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  padding: 4px 10px;
+  color: var(--text-secondary);
+  background-color: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.stage-link.active {
+  color: var(--text-primary);
+  background-color: var(--interactive-hover);
+  font-weight: 500;
+}
+
+.stage-link:hover:not(.active) {
+  background-color: var(--surface-alt);
+}
+
+.stage-link .stage-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--surface-alt);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 6px;
+  transition: all 0.2s ease;
+}
+
+.stage-link .stage-number.completed {
+  background-color: #28a745 !important; /* Green background */
+  color: white !important;
+}
+
+.stage-link .stage-number.running {
+  background-color: #007bff !important; /* Blue background */
+  color: white !important;
+}
+
+.stage-link .stage-number.failed {
+  background-color: #dc3545 !important; /* Red background */
+  color: white !important;
+}
+
+.stage-link.active .stage-number {
+  background-color: var(--interactive-primary);
+  color: var(--text-on-primary);
+}
+
+.stage-link.completed .stage-number {
+  background-color: var(--status-success);
+  color: var(--text-on-primary);
+}
+
+.stage-separator {
+  color: var(--text-secondary);
+  margin: 0 2px;
+  opacity: 0.5;
+}
+
+/* Improved stage breadcrumb status indicators */
+.stage-link.running .stage-number {
+  background-color: var(--job-status-running);
+  color: #000; /* Dark text on yellow background */
+}
+
+.stage-link.failed .stage-number {
+  background-color: var(--job-status-failed);
+  color: #fff; /* White text on red background */
+}
+
+/* Stage link text status markers */
+.stage-link.active.running {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.stage-link.active.failed {
+  color: var(--status-error);
+  font-weight: 600;
+}
+
+/**************************************
+ * STATUS INDICATORS
+ **************************************/
+
+/* Status indicators */
+.doc-status.status-completed {
+  background-color: var(--status-success);
+  color: var(--text-on-primary);
+}
+
+.doc-status.status-error {
+  background-color: var(--status-error);
+  color: var(--text-on-primary);
+}
+
+/* Status container and components */
+.status-container {
+  width: 100%;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: var(--surface-alt);
+  padding: 12px;
+}
+
+.status-label-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.status-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+.status-indicator {
+  font-weight: 500;
+  font-size: 14px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Progress bar styles */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: var(--surface-default);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--interactive-primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Step counter styles */
+.step-counter {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* Status color variants */
+.status-indicator.status-not-started {
+  background-color: var(--surface-default);
+  color: var(--text-secondary);
+}
+
+.status-indicator.status-started {
+  background-color: var(--interactive-primary-light);
+  color: var(--text-primary);
+}
+
+.status-indicator.status-processing {
+  background-color: var(--status-warning);
+  color: var(--text-primary);
+}
+
+.status-indicator.status-failed {
+  background-color: var(--status-error);
+  color: white;
+}
+
+.status-indicator.status-error {
+  background-color: var(--status-error);
+  color: white;
+}
+
+/* Progress bar color variants based on status */
+.status-indicator.status-completed + .progress-container .progress-bar {
+  background-color: var(--status-success);
+}
+
+.status-indicator.status-failed + .progress-container .progress-bar,
+.status-indicator.status-error + .progress-container .progress-bar {
+  background-color: var(--status-error);
+}
+
+.status-indicator.status-processing + .progress-container .progress-bar {
+  background-color: var(--interactive-primary);
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 40px 40px;
+  animation: progress-bar-stripes 2s linear infinite;
+}
+
+/* Status indicator component (enhanced) */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  background-color: var(--surface-alt);
+}
+
+.status-indicator.status-processing,
+.status-indicator.status-running {
+  background-color: rgba(255, 193, 7, 0.2);
+  border-left: 4px solid var(--job-status-running);
+}
+
+.status-indicator.status-completed {
+  background-color: rgba(40, 167, 69, 0.6);
+  border-left: 4px solid var(--job-status-completed);
+  color: white;
+}
+
+.status-indicator.status-failed,
+.status-indicator.status-error {
+  background-color: rgba(220, 53, 69, 0.2);
+  border-left: 4px solid var(--job-status-failed);
+}
+
+.status-indicator.status-processing .status-indicator-bar,
+.status-indicator.status-running .status-indicator-bar {
+  background-color: var(--job-status-running);
+}
+
+.status-indicator.status-completed .status-indicator-bar {
+  background-color: var(--job-status-completed);
+}
+
+.status-indicator.status-failed .status-indicator-bar,
+.status-indicator.status-error .status-indicator-bar {
+  background-color: var(--job-status-failed);
+}
+
+/* Animation for running state */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.status-indicator.status-processing .status-indicator-icon .spinner,
+.status-indicator.status-running .status-indicator-icon .spinner {
+  display: inline-block;
+  animation: spin 2s linear infinite;
+}
+
+/* Progress bar animation for processing/running status */
+@keyframes progress-bar-stripes {
+  from { background-position: 40px 0; }
+  to { background-position: 0 0; }
+}
+
+.status-indicator.status-processing .status-indicator-bar,
+.status-indicator.status-running .status-indicator-bar {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 40px 40px;
+  animation: progress-bar-stripes 2s linear infinite;
+}
+
+/* Status wrapper and button group layout */
+.status-and-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.disabled-reason {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Tab Status Colors - These complement your existing tab styles */
+.tab.status-running {
+  background-color: var(--job-status-running);
+  border-color: var(--job-status-running);
+  color: #000; /* Dark text on yellow background */
+}
+
+.tab.status-completed {
+  background-color: var(--job-status-completed);
+  border-color: var(--job-status-completed);
+  color: #fff; /* White text on green background */
+}
+
+.tab.status-failed {
+  background-color: var(--job-status-failed);
+  border-color: var(--job-status-failed);
+  color: #fff; /* White text on red background */
+}
+
+.tab.status-cancelled, 
+.tab.status-stopped {
+  background-color: var(--job-status-cancelled);
+  border-color: var(--job-status-cancelled);
+  color: #fff; /* White text on grey background */
+}
+
+/* Status indicator for document dropdown */
+.selected-status.status-running {
+  background-color: var(--job-status-running);
+  color: #000;
+}
+
+.selected-status.status-completed {
+  background-color: var(--job-status-completed);
+  color: #fff;
+}
+
+.selected-status.status-failed {
+  background-color: var(--job-status-failed);
+  color: #fff;
+}
+
+.selected-status.status-cancelled,
+.selected-status.status-stopped {
+  background-color: var(--job-status-cancelled);
+  color: #fff;
+}
+
+.selected-status.status-not-applicable {
+  background-color: var(--job-status-not-applicable);
+  color: #fff;
+}
+
+/**************************************
+ * CONTROL PANE
+ **************************************/
+
+/* Responsive Control Pane */
+.responsive-control-pane {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sub-pane {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Hide labels on narrow screens */
+@media (max-width: 768px) {
+  .hide-narrow {
+    display: none;
+  }
+  
+  .responsive-control-pane {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-pane, .actions-pane, .answer-pane {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/**************************************
+ * AG GRID SPECIFIC ICON FIX
+ * Added at the top to take precedence
+ **************************************/
+
+/* Reset all ag-icon elements to defaults */
+.ag-theme-alpine .ag-icon {
+  display: inline-block !important;
+  font-family: "agGridAlpine" !important;
+  font-size: 16px !important;
+  line-height: 16px !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  color: currentColor !important;
+  speak: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Specifically fix common icons */
+.ag-theme-alpine .ag-icon-filter:before {
+  content: "\f013" !important;
+}
+
+.ag-theme-alpine .ag-icon-asc:before {
+  content: "\f106" !important;
+}
+
+.ag-theme-alpine .ag-icon-desc:before {
+  content: "\f107" !important;
+}
+
+.ag-theme-alpine .ag-icon-menu:before {
+  content: "\f0c9" !important;
+}
+
+/* Make sure font-face is properly included */
+@font-face {
+  font-family: "agGridAlpine";
+  src: url("/node_modules/ag-grid-community/src/styles/agGridAlpineFont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/**************************************
+ * AG GRID STYLES
+ **************************************/
+
+/* Remove space between grid and tabs */
+.grid-tabs-container {
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--border-strong);
+  height: 36px;
+  position: sticky; /* CHANGED from absolute to sticky */
+  bottom: 0;
+  background: var(--surface-default);
+  z-index: 20; /* Keep higher z-index */
+  width: 100%;
+}
+
+/* AG Grid Container */
+.question-grid-container {
+  width: 100%;
+  flex: 1; /* Take all available space */
+  min-height: 300px;
+  overflow: auto; /* Allow scrolling */
+}
+
+/* Make sure scrollbars are visible */
+.ag-root-wrapper {
+  height: 100%;
+  overflow: visible;
+}
+
+/* AG Grid Theme Overrides */
+.ag-theme-alpine {
+  --ag-header-height: 40px;
+  --ag-header-foreground-color: var(--text-secondary);
+  --ag-header-background-color: var(--surface-alt);
+  --ag-border-color: var(--border-subtle);
+  --ag-row-border-color: var(--border-subtle);
+  --ag-background-color: var(--surface-default);
+  --ag-odd-row-background-color: var(--surface-default);
+  --ag-row-hover-color: var(--interactive-hover);
+  --ag-selected-row-background-color: rgba(19, 92, 121, 0.1);
+  --ag-range-selection-border-color: var(--interactive-primary);
+  --ag-font-size: var(--grid-font-size, 14px); /* Use dynamic font size variable */
+  --ag-font-family: inherit;
+  
+  /* Grid scroll styles for better visibility */
+  --ag-scrollbar-track-color: rgba(0, 0, 0, 0.1);
+  --ag-scrollbar-thumb-color: rgba(0, 0, 0, 0.2);
+  --ag-scrollbar-thumb-hover-color: rgba(0, 0, 0, 0.3);
+  --ag-scrollbar-size: 10px !important;
+}
+
+/* Make sure AG Grid scrollbars appear when needed */
+.ag-theme-alpine .ag-body-viewport {
+  overflow: auto !important;
+}
+
+/* Ensure scrollbars are visible */
+.ag-theme-alpine .ag-body-horizontal-scroll::-webkit-scrollbar,
+.ag-theme-alpine .ag-body-vertical-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.ag-theme-alpine .ag-body-horizontal-scroll::-webkit-scrollbar-thumb,
+.ag-theme-alpine .ag-body-vertical-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.ag-theme-alpine .ag-body-horizontal-scroll::-webkit-scrollbar-thumb:hover,
+.ag-theme-alpine .ag-body-vertical-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.ag-theme-alpine .ag-root-wrapper {
+  border-bottom: none;
+}
+
+/* Risk Rating and Completeness column styles */
+.ag-theme-alpine .cell-risk-rating,
+.ag-theme-alpine .cell-completeness {
+  text-align: center;
+  font-weight: 500;
+}
+
+/* AI Answer Date column style - matches other date columns */
+.ag-theme-alpine .cell-ai-date {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+/* Add these gradients for visual indicator bars in cells */
+.ag-theme-alpine .cell-risk-rating::after,
+.ag-theme-alpine .cell-completeness::after {
+  content: '';
+  display: block;
+  height: 4px;
+  margin-top: 4px;
+  border-radius: 2px;
+  background-color: #e0e0e0;
+  position: relative;
+}
+
+/* Create progress bars with gradients */
+.ag-theme-alpine .cell-risk-rating::after {
+  background: linear-gradient(to right, #1a9641, #fdae61, #d7191c);
+  width: calc(var(--risk-value, 0) * 1%);
+  max-width: 100%;
+}
+
+.ag-theme-alpine .cell-completeness::after {
+  background: linear-gradient(to right, #d7191c, #fdae61, #1a9641);
+  width: calc(var(--completeness-value, 0) * 1%);
+  max-width: 100%;
+}
+
+/* Cell spacing adjustments */
+.ag-cell-value {
+  line-height: 1.2; /* Tighter line spacing - removed !important to allow dynamic adjustment */
+}
+.ag-cell p {
+  margin: 0 0 4px; /* Reduce paragraph spacing - removed !important to allow dynamic adjustment */
+}
+/* Removed hardcoded padding on .ag-cell-wrapper to allow AG Grid to control row heights dynamically */
+
+/* FIXED: Remove custom icon styles to use AG Grid defaults */
+/* The ag-icon-* classes are removed to let AG Grid use its built-in SVG icons */
+
+/**************************************
+ * EXCEL-STYLE TABS
+ **************************************/
+
+/* Excel-style tabs container */
+.excel-tabs-container {
+  display: flex;
+  align-items: center;
+  background-color: #f1f1f1;
+  height: 36px;
+  width: 100%;
+  position: sticky;
+  /*overflow: visible;*/
+}
+
+/* Scroller for tabs */
+.grid-tabs-scroller {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  flex: 1;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  height: 100%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.grid-tabs-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tabs wrapper */
+.excel-tabs-wrapper {
+  display: inline-flex;
+  height: 100%;
+}
+
+/* Individual tab styling */
+.excel-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 12px;
+  min-width: 100px;
+  max-width: 160px;
+  background-color: #e6e6e6;
+  border: none;
+  border-right: 1px solid #ccc;
+  color: #333;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: left;
+}
+
+/* Active tab styling */
+.excel-tab.active {
+  background-color: white;
+  border-bottom: none;
+  font-weight: 500;
+  color: #000;
+  height: calc(100% + 1px); /* Extend slightly to cover top border */
+}
+
+/* Hover effect for tabs */
+.excel-tab:hover:not(.active) {
+  background-color: #f0f0f0;
+}
+
+/* Scroll buttons */
+.tab-scroll-button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: opacity 0.2s;
+}
+
+.tab-scroll-button:hover {
+  color: #333;
+}
+
+.tab-scroll-button:focus {
+  outline: none;
+}
+
+.tab-scroll-button.left-scroll {
+  margin-right: 2px;
+}
+
+.tab-scroll-button.right-scroll {
+  margin-left: 2px;
+}
+
+/* Add button styling */
+.tab-add-button {
+  width: 24px;
+  height: 24px;
+  margin-left: 2px;
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  transition: background-color 0.2s;
+}
+
+.tab-add-button:hover {
+  background-color: #ddd;
+  color: #333;
+}
+
+/**************************************
+ * FORMS & ANALYSIS
+ **************************************/
+
+/* Form layout adjustments */
+.analysis-lm-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Ensure the form controls are properly aligned */
+.form-group {
+  margin-bottom: 16px;
+}
+
+/* Analysis results section */
+.analysis-lm-results {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.analysis-step-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.analysis-step {
+  background-color: var(--surface-default);
+  border-radius: 6px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-step h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/**************************************
+ * STATUS DROPDOWN
+ **************************************/
+
+.status-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.status-dropdown-wrapper .selected-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--surface-default);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
+}
+
+.status-dropdown-wrapper .selected-status i {
+  margin-left: 8px;
+  transition: transform 0.2s;
+}
+
+.status-dropdown-wrapper.open .selected-status i {
+  transform: rotate(180deg);
+}
+
+.status-dropdown-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background: var(--surface-default);
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-top: 2px;
+}
+
+.status-dropdown-wrapper.open .status-dropdown-options {
+  display: block;
+}
+
+.status-option {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.status-option:hover {
+  background: var(--interactive-hover);
+}
+
+.status-option.selected {
+  background: var(--interactive-hover);
+  font-weight: 500;
+}
+
+/**************************************
+ * FILE UPLOAD AREA
+ **************************************/
+
+.file-upload-area {
+  border: 2px dashed var(--border-subtle);
+  border-radius: 8px;
+  padding: 2rem 1rem;
+  text-align: center;
+  background-color: var(--surface-alt);
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.file-upload-area:hover {
+  border-color: var(--color-primary);
+  background-color: var(--surface-dropdown-hover);
+}
+
+.file-upload-area.drag-over {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+}
+
+.upload-instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.upload-instructions i {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.browse-text {
+  color: var(--color-primary);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.file-requirements {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.file-input-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.selected-files-container {
+  margin-top: 10px;
+}
+
+.file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.file-list li {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: var(--surface-default);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.file-list li .file-info {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.file-list li .file-icon {
+  margin-right: 0.5rem;
+  color: var(--color-primary);
+}
+
+.file-list li .file-name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.file-list li .file-size {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
+}
+
+.file-list li .file-remove {
+  margin-left: 0.5rem;
+  color: var(--status-error);
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+.file-list li .file-remove:hover {
+  opacity: 0.8;
+}
+
+.upload-progress {
+  height: 4px;
+  background-color: var(--surface-alt);
+  margin-top: 0.5rem;
+  border-radius: 2px;
+  overflow: hidden;
+}

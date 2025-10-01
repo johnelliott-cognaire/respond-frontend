@@ -1,0 +1,86 @@
+{
+  "d7e1777d2e60ba2819f98ae878c9f0e5": [
+    "analysis-lm-form",
+    "form-group"
+  ],
+  "b0748493f4984e36dbe2777f77d8992b": [
+    "documents-grid",
+    "csv-grid"
+  ],
+  "f2b0ca973eb412dd7759cce3bc3b31d9": [
+    "document-card",
+    "csv-card"
+  ],
+  "8e64eae0064ca5b05fdf1eac21e93ee3": [
+    "doc-status",
+    "status-completed"
+  ],
+  "32024a97d95e806f62735ce77557d702": [
+    "status-indicator-icon",
+    "spinner"
+  ],
+  "ba1adf60273945dd1316e459e9d0e799": [
+    "status-cancelled",
+    "status-stopped"
+  ],
+  "01a2b35d8231190aae05bf74ceba387b": [
+    "sub-pane",
+    "download-failures-btn"
+  ],
+  "4765c6eb0f46a05097f1f7e8417030d2": [
+    "ag-theme-alpine",
+    "ag-icon"
+  ],
+  "ef3cf5a1369a536d348a55d2b35f5d1b": [
+    "ag-body-horizontal-scroll",
+    "ag-body-vertical-scroll"
+  ],
+  "7925601758e5301791a575e8e4bc7be4": [
+    "jobs-dropdown",
+    "notifications-dropdown"
+  ],
+  "a2dd3e3f71d4bd990c1660bcfcee0df2": [
+    "cancelled",
+    "stopped"
+  ],
+  "57e800c691890b80cd317bf786ac0fe1": [
+    "selected-file-info",
+    "worksheet-results-section",
+    "progress-bar-container"
+  ],
+  "fcc8b037cba493e5f17d610599bf9b45": [
+    "success-icon",
+    "success-stat"
+  ],
+  "4202a47393c94fa13e2cfc2350c0f361": [
+    "warning-icon",
+    "warning-stat"
+  ],
+  "52a04d95ea1fdb01b6005c3f98388a8f": [
+    "failure-stat",
+    "error-count"
+  ],
+  "2c0305f67c2aa5de094fed9d0d63a703": [
+    "data-row",
+    "above-start"
+  ],
+  "2967cf77932261fd8a64858269e24327": [
+    "no-sheets-message",
+    "no-data-message"
+  ],
+  "3c8b242e9d66669572265718e0d05242": [
+    "accounts-icon",
+    "projects-icon"
+  ],
+  "938bb7c0e2684fda065b41ed33755fb8": [
+    "register-link",
+    "login-link",
+    "logout-link",
+    "username"
+  ],
+  "7e26614ba40019f3617ebb36600c602f": [
+    "btn-outline",
+    "btn-danger",
+    "btn-icon"
+  ]
+}

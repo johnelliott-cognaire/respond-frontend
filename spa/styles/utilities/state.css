@@ -1,0 +1,127 @@
+/* utilities/state.css - State utility classes for interactive components */
+
+/* Hidden state */
+.is-hidden {
+    display: none !important;
+  }
+  
+  /* Visible state */
+  .is-visible {
+    display: block !important;
+  }
+  
+  .is-visible-flex {
+    display: flex !important;
+  }
+  
+  /* Active state */
+  .is-active {
+    background-color: var(--interactive-hover);
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  
+  /* Loading state */
+  .is-loading {
+    position: relative;
+    pointer-events: none;
+  }
+  
+  .is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Disabled state */
+  .is-disabled {
+    opacity: var(--opacity-disabled, 0.65);
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+  
+  /* Error state */
+  .is-error {
+    border-color: var(--status-error) !important;
+  }
+  
+  /* Success state */
+  .is-success {
+    border-color: var(--status-success) !important;
+  }
+  
+  /* Jobs/Status states */
+  .is-running {
+    color: var(--job-status-running);
+    background-color: var(--job-status-running-muted);
+  }
+  
+  .is-completed {
+    color: var(--job-status-completed);
+    background-color: var(--job-status-completed-muted);
+  }
+  
+  .is-failed {
+    color: var(--job-status-failed);
+    background-color: var(--job-status-failed-muted);
+  }
+  
+  .is-cancelled, 
+  .is-stopped {
+    color: var(--job-status-cancelled);
+    background-color: var(--job-status-cancelled-muted);
+  }
+  
+  /* ==========================================
+     CURSOR UTILITIES - Fix for pointer cursor issues
+     ========================================== */
+  
+  /* Ensure all interactive elements have pointer cursor */
+  button:not(:disabled),
+  .btn:not(:disabled),
+  a[href],
+  [role="button"]:not([disabled]),
+  [onclick]:not([disabled]),
+  .clickable,
+  .cursor-pointer {
+    cursor: pointer !important;
+  }
+  
+  /* Force pointer cursor for common interactive classes */
+  .stage-link,
+  .icon,
+  .accounts-icon,
+  .projects-icon,
+  .register-link,
+  .login-link,
+  .logout-link,
+  .username {
+    cursor: pointer !important;
+  }
+  
+  /* Default cursor utility */
+  .cursor-default {
+    cursor: default !important;
+  }
+  
+  /* Help cursor utility */
+  .cursor-help {
+    cursor: help !important;
+  }
+  
+  /* Not-allowed cursor utility */
+  .cursor-not-allowed {
+    cursor: not-allowed !important;
+  }

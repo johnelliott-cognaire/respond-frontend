@@ -1,0 +1,43 @@
+/* Temporary debug CSS to help identify cursor issues */
+
+/* Force cursor styles to be explicit */
+textarea {
+  cursor: text !important;
+}
+
+button {
+  cursor: pointer !important;
+}
+
+a {
+  cursor: pointer !important;
+}
+
+/* Prevent any global cursor overrides */
+* {
+  /* Remove any conflicting cursor styles */
+}
+
+/* Debug class to test cursor responsiveness */
+.cursor-debug {
+  cursor: help !important;
+  background: rgba(255, 0, 0, 0.1) !important;
+}
+
+/* Check for potential cursor-blocking elements */
+.custom-tooltip {
+  pointer-events: none !important;
+}
+
+/* Ensure AG Grid doesn't interfere with cursors */
+.ag-root-wrapper {
+  cursor: default;
+}
+
+.ag-root-wrapper textarea {
+  cursor: text !important;
+}
+
+.ag-root-wrapper button {
+  cursor: pointer !important;
+}

@@ -1,0 +1,93 @@
+/* analysis-lm-legacy.css */
+.analysis-lm-form-container {
+  margin: 0;
+  padding: 0;
+  background-color: var(--surface-default);
+}
+
+.analysis-lm-form .form-group {
+  margin-bottom: 16px;
+}
+
+.analysis-lm-form label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+  color: var(--text-primary);
+}
+
+.analysis-lm-form input,
+.analysis-lm-form select,
+.analysis-lm-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+}
+
+.analysis-lm-form textarea {
+  resize: vertical;
+}
+
+.analysis-lm-form .button-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.analysis-lm-results {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: #fafafa;
+}
+
+.results-header {
+  margin-top: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.documents-grid,
+.csv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.document-card,
+.csv-card,
+.result-card {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.document-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.result-card {
+  margin-bottom: 1rem;
+}
+
+.result-content {
+  margin-top: 1rem;
+}
+
+.json-display {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow: auto;
+  max-height: 400px;
+}

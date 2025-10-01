@@ -1,0 +1,84 @@
+// File: ui/stages/stage-form-notify-tester.js
+import { ErrorModal } from "../../ui/modals/error-modal.js";
+
+/**
+ * A single-stage test for generating fake notifications and job updates
+ */
+export default class StageFormNotifyTester {
+  constructor(docTaskInstance, jobController) {
+    this.docTaskInstance = docTaskInstance;
+    this.jobController = jobController;
+    this.domContainer = null;
+  }
+
+  render(containerEl) {
+    this.domContainer = containerEl;
+    containerEl.innerHTML = `
+      <div class="doc-container" style="padding:1rem;">
+        <h3>Notification & Job Testing</h3>
+        <p>Use the buttons below to simulate a job finishing, or failing, or sending a random notification.</p>
+        <button id="btnFakeComplete" class="btn btn--secondary">Trigger Fake Completion</button>
+        <button id="btnFakeFail" class="btn btn--danger">Trigger Fake Failure</button>
+        <button id="btnFakeNotify" class="btn btn--secondary">Add a random Notification</button>
+        <hr/>
+        <p>Check your "Notifications" bell and "Jobs" gear icons in the top bar!</p>
+      </div>
+    `;
+
+    // Add button listeners
+    const btnFakeComplete = containerEl.querySelector("#btnFakeComplete");
+    if (btnFakeComplete) {
+      btnFakeComplete.addEventListener("click", () => this.handleFakeCompletion());
+    }
+    const btnFakeFail = containerEl.querySelector("#btnFakeFail");
+    if (btnFakeFail) {
+      btnFakeFail.addEventListener("click", () => this.handleFakeFailure());
+    }
+    const btnFakeNotify = containerEl.querySelector("#btnFakeNotify");
+    if (btnFakeNotify) {
+      btnFakeNotify.addEventListener("click", () => this.handleFakeNotify());
+    }
+  }
+
+  handleFakeCompletion() {
+    // You could do something like:
+    console.log("[NotifyTester] Triggering a fake job completion notification");
+    const randomJobId = "testjob_" + Math.random().toString(36).slice(2);
+    // For example, if we have a notificationController globally:
+    if (window.notificationController) {
+      window.notificationController.handleJobCompletion(randomJobId, { request_type: "test" });
+    } else {
+      new ErrorModal().show({
+        title: "Notification Controller Not Found",
+        message: "No global notificationController available to handle the event."
+      });
+    }
+  }
+
+  handleFakeFailure() {
+    const randomJobId = "testjob_" + Math.random().toString(36).slice(2);
+    if (window.notificationController) {
+      window.notificationController.handleJobFailure(randomJobId, "Simulated error for test!");
+    } else {
+      new ErrorModal().show({
+        title: "Notification Controller Not Found",
+        message: "No global notificationController available to handle the event."
+      });
+    }
+  }
+
+  handleFakeNotify() {
+    if (window.notificationController) {
+      window.notificationController.addNotification({
+        type: "test_event",
+        message: "Random test event at " + new Date().toLocaleTimeString(),
+        metadata: { random: "123" }
+      });
+    } else {
+      new ErrorModal().show({
+        title: "Notification Controller Not Found",
+        message: "No global notificationController available to handle the event."
+      });
+    }
+  }
+}

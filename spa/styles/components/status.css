@@ -1,0 +1,361 @@
+/* styles/components/status.css */
+
+.status{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font: 500 12px/1 var(--font-family-base, Arial, sans-serif);
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+  
+  /* Each state uses two custom props: bg + fg ----------------------------- */
+  .status--running{
+    background: var(--job-status-running-muted);
+    color: var(--job-status-running);
+  }
+  .status--completed{
+    background: var(--job-status-completed-muted);
+    color: var(--job-status-completed);
+  }
+  .status--failed{
+    background: var(--job-status-failed-muted);
+    color: var(--job-status-failed);
+  }
+  .status--cancelled,
+  .status--stopped{
+    background: var(--job-status-cancelled-muted);
+    color: var(--job-status-cancelled);
+  }
+  
+  /* Spinner for loading status */
+  .spinner{
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  
+  /* ============================
+   * ENHANCED STATUS BADGES
+   * For vector index management UX
+   * ============================ */
+  
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    font: var(--font-weight-medium) var(--font-size-xs)/var(--line-height-normal) var(--font-family-base);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Success state - Ready for search, Active indexes */
+  .status-badge--success {
+    background: var(--job-status-completed-muted);
+    color: var(--job-status-completed);
+    border: 1px solid var(--status-success);
+  }
+  
+  /* Info state - Index created, General info */
+  .status-badge--info {
+    background: var(--job-status-not-applicable-muted);
+    color: var(--job-status-not-applicable);
+    border: 1px solid var(--status-info);
+  }
+  
+  /* Processing state - Creating indexes, Awaiting documents */
+  .status-badge--processing {
+    background: var(--job-status-running-muted);
+    color: var(--job-status-running);
+    border: 1px solid var(--status-warning);
+  }
+  
+  /* Warning state - Needs re-vectorization, Old indexes */
+  .status-badge--warning {
+    background: var(--color-transparent-dark-10);
+    color: var(--text-muted);
+    border: 1px solid var(--color-gray-300);
+  }
+  
+  /* Error state - Failed operations */
+  .status-badge--error {
+    background: var(--job-status-failed-muted);
+    color: var(--job-status-failed);
+    border: 1px solid var(--status-error);
+  }
+  
+  /* Loading spinner for processing badges */
+  .status-badge--processing .spinner {
+    width: 12px;
+    height: 12px;
+    border-width: 1.5px;
+  }
+  
+  /* ============================
+   * VECTOR INDEX MANAGEMENT SPECIFIC
+   * ============================ */
+  
+  /* Permission warning styling */
+  .permission-warning {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    background: var(--color-primary-transparent-5);
+    color: var(--text-secondary);
+    font: var(--font-weight-normal) var(--font-size-sm)/var(--line-height-normal) var(--font-family-base);
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+    margin: var(--spacing-2) 0;
+  }
+  
+  .permission-warning .fas {
+    color: var(--status-warning);
+  }
+  
+  /* Document count value highlighting */
+  .document-count-value {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+  }
+  
+  /* Loading states for document counts */
+  .document-count-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  
+  .document-count-loading .spinner {
+    width: 14px;
+    height: 14px;
+    border-width: 1.5px;
+  }
+  
+  /* Enhanced status badge icon spacing */
+  .status-badge .fas,
+  .status-badge .fa {
+    font-size: 10px;
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 768px) {
+    .status-badge {
+      font-size: 10px;
+      padding: 2px var(--spacing-1);
+      max-width: 120px;
+    }
+    
+    .permission-warning {
+      font-size: var(--font-size-xs);
+      padding: var(--spacing-1) var(--spacing-2);
+    }
+  }
+  
+  /* ============================
+   * SEARCH INDEX SUMMARY (BROWSE CORPUS)
+   * ============================ */
+  
+  .search-index-summary {
+    margin-top: var(--spacing-4);
+    border-top: 1px solid var(--border-subtle);
+    padding-top: var(--spacing-4);
+  }
+  
+  .search-index-summary h4 {
+    font: var(--font-weight-semibold) var(--font-size-base)/var(--line-height-normal) var(--font-family-base);
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-2) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+  
+  .search-index-summary h4 .fas {
+    color: var(--status-info);
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Loading state */
+  .search-index-loading {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    color: var(--text-muted);
+    font-style: italic;
+    padding: var(--spacing-4) 0;
+  }
+  
+  .search-index-loading .spinner {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+  }
+  
+  /* Empty state */
+  .search-index-empty {
+    background: var(--surface-alt);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: var(--spacing-4);
+    text-align: center;
+  }
+  
+  .search-index-empty p {
+    margin: 0 0 var(--spacing-1) 0;
+    color: var(--text-secondary);
+  }
+  
+  .search-index-empty .help-text {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+  }
+  
+  /* Error state */
+  .search-index-error {
+    background: var(--job-status-failed-muted);
+    border: 1px solid var(--status-error);
+    border-radius: 6px;
+    padding: var(--spacing-4);
+  }
+  
+  .search-index-error p {
+    margin: 0 0 var(--spacing-1) 0;
+    color: var(--status-error);
+  }
+  
+  .search-index-error .error-details {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    font-family: monospace;
+  }
+  
+  /* Overview section */
+  .search-index-overview {
+    background: var(--surface-default);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: var(--spacing-4);
+  }
+  
+  /* Statistics display */
+  .search-stats {
+    display: flex;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-4);
+    padding-bottom: var(--spacing-2);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+  }
+  
+  .stat-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin-bottom: var(--spacing-1);
+  }
+  
+  .stat-value {
+    font: var(--font-weight-bold) var(--font-size-lg)/var(--line-height-tight) var(--font-family-base);
+    color: var(--text-primary);
+  }
+  
+  /* Index status groups */
+  .index-status-group {
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .index-status-group:last-child {
+    margin-bottom: 0;
+  }
+  
+  .index-status-group h5 {
+    font: var(--font-weight-medium) var(--font-size-sm)/var(--line-height-normal) var(--font-family-base);
+    margin: 0 0 var(--spacing-2) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+  
+  .index-status-group h5 .fas {
+    font-size: 12px;
+  }
+  
+  /* Index list items */
+  .index-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+  }
+  
+  .index-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-1) var(--spacing-2);
+    background: var(--surface-alt);
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+  }
+  
+  .index-name {
+    font: var(--font-weight-medium) var(--font-size-sm)/var(--line-height-normal) var(--font-family-base);
+    color: var(--text-primary);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .index-chunks,
+  .index-status {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    white-space: nowrap;
+    margin-left: var(--spacing-2);
+  }
+  
+  /* Responsive adjustments for search index summary */
+  @media (max-width: 768px) {
+    .search-stats {
+      flex-direction: column;
+      gap: var(--spacing-2);
+    }
+    
+    .stat-item {
+      flex-direction: row;
+      justify-content: space-between;
+      min-width: unset;
+    }
+    
+    .index-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-1);
+    }
+    
+    .index-chunks,
+    .index-status {
+      margin-left: 0;
+    }
+  }

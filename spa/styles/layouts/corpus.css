@@ -1,0 +1,170 @@
+/* styles/layouts/corpus.css */
+
+
+/* === General Layout Structure === */
+.corpus-manager-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.corpus-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--surface-default);
+    border: 1px solid var(--border-subtle);
+}
+
+.corpus-title-bar {
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    background-color: var(--surface-default);
+}
+
+#corpus-section-title {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    flex-grow: 0;
+    margin-right: 24px;
+}
+
+.corpus-context-info {
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    margin-right: auto;
+    flex-grow: 1;
+}
+
+.corpus-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-left: 4px;
+}
+
+.corpus-action-buttons {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+}
+
+#import-content {
+    white-space: nowrap;
+}
+
+.corpus-content-area {
+    flex: 1;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Main container */
+.corpus-two-pane-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  
+  /* Header areas */
+  .corpus-two-pane-header {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+  }
+  
+  .corpus-two-pane-subheader {
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+  
+  /* Two-pane layout */
+  .corpus-two-pane-content {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    min-height: 0; /* Important for proper flex behavior */
+  }
+
+  .corpus-two-pane-content-skinny-left {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Left: 1/3, Right: 2/3 */
+    width: 100%;
+    gap: 20px; /* Optional: add spacing between panes */
+  }
+
+  /* Right pane */
+  .corpus-two-pane-right-skinny-left {
+    flex: 1;
+    min-width: 0; /* Allows flex item to shrink below content size */
+    overflow: auto;
+    position: relative;
+  }
+
+  /* Left pane */
+  .corpus-two-pane-left-skinny-left {
+    flex: 1;
+    min-width: 0; /* Allows flex item to shrink below content size */
+    overflow: auto;
+    position: relative;
+  }
+  
+  /* Left pane */
+  .corpus-two-pane-left {
+    flex: 1;
+    min-width: 0; /* Allows flex item to shrink below content size */
+    max-width: 50%;
+    overflow: auto;
+    position: relative;
+  }
+  
+  /* Right pane */
+  .corpus-two-pane-right {
+    flex: 1;
+    min-width: 0; /* Allows flex item to shrink below content size */
+    max-width: 50%;
+    overflow: auto;
+    position: relative;
+  }
+  
+  /* Loading overlay for any pane */
+  .corpus-two-pane-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .corpus-two-pane-content {
+      flex-direction: column;
+    }
+    
+    .corpus-two-pane-left,
+    .corpus-two-pane-right {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  .document-tabs-container {
+    margin-top: 20px;
+  }
+  
+  .document-preview-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 16px;
+  }

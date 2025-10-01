@@ -1,0 +1,8 @@
+{
+    "btn-primary": "btn--primary",
+    "btn-secondary": "btn--secondary",
+    "btn-danger":   "btn--danger",
+    "btn-outline":  "btn--outline",
+    "btn":          "btn"              /* base stays same, but keep for safety */
+  }
+  

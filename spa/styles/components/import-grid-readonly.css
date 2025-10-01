@@ -1,0 +1,238 @@
+/* Import Grid Component
+   Read-only grid used in the import wizard for data preview
+
+   styles/components/import-grid-readonly.css
+*/
+
+/* Grid container */
+.ro-grid-container {
+  overflow: auto;
+  max-height: 400px;
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  font-family: var(--font-family-base);
+  margin-bottom: 15px;
+  background-color: var(--surface-default);
+}
+
+/* Grid table */
+.ro-grid-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+  table-layout: fixed;
+}
+
+.ro-grid-table th,
+.ro-grid-table td {
+  border: 1px solid var(--border-subtle);
+  padding: 4px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 250px;
+}
+
+.ro-grid-table th {
+  background-color: var(--surface-alt);
+  font-weight: bold;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.ro-grid-table .col-header {
+  background-color: var(--surface-alt);
+  text-align: center;
+}
+
+.ro-grid-table .row-header {
+  background-color: var(--surface-alt);
+  text-align: center;
+  width: 40px;
+  min-width: 40px;
+  max-width: 40px;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+}
+
+.ro-grid-table .row-header.selectable {
+  cursor: pointer;
+}
+
+.ro-grid-table .row-header.selectable:hover {
+  background-color: var(--interactive-hover);
+}
+
+.ro-grid-table .row-header.selected {
+  background-color: var(--status-success);
+  color: var(--text-on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ro-grid-table .corner-header {
+  background-color: var(--surface-alt);
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 15;
+}
+
+/* Row states */
+.ro-grid-table .data-row.above-start {
+  opacity: 0.5;
+  color: var(--text-muted);
+  background-color: var(--surface-alt);
+}
+
+.ro-grid-table .data-row.start-row {
+  background-color: rgba(76, 175, 80, 0.1);
+}
+
+/* Cell states */
+.ro-grid-table .mapped-column {
+  background-color: #e8f5e9;
+}
+
+.ro-grid-table .mapped-header {
+  background-color: #c8e6c9;
+  font-weight: bold;
+}
+
+.ro-grid-table .empty-cell {
+  background-color: #ffebee;
+}
+
+/* No selection state */
+.ro-grid-table.no-row-selection .row-header {
+  background-color: var(--surface-alt);
+  cursor: default;
+}
+
+.ro-grid-table.no-row-selection th {
+  background-color: var(--surface-alt);
+  font-weight: bold;
+}
+
+/* Row checker */
+.row-number-check {
+  margin-left: 4px;
+}
+
+/* Cell tooltip */
+.cell-tooltip {
+  position: absolute;
+  background-color: var(--text-primary);
+  color: var(--text-on-primary);
+  padding: 5px 10px;
+  border-radius: 4px;
+  z-index: 100;
+  max-width: 300px;
+  box-shadow: 0 2px 5px var(--shadow-medium);
+  font-size: 12px;
+  word-break: break-word;
+  white-space: normal;
+}
+
+/* Color legend */
+.ro-grid-legend {
+  margin-top: 15px;
+  font-size: 11px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-right: 12px;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  border: 1px solid var(--border-subtle);
+}
+
+.ro-grid-legend .legend-color.legend-mapped {
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+}
+
+.ro-grid-legend .legend-color.legend-selected {
+  background-color: var(--status-success);
+  border: 1px solid #388e3c;
+}
+
+.ro-grid-legend .legend-color.legend-empty {
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+}
+
+.ro-grid-legend .legend-color.legend-grayed {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Grid container for preview */
+.import-grid-container {
+  overflow: auto;
+  margin-bottom: 20px;
+  background-color: var(--surface-default);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+}
+
+/* Placeholder content */
+.preview-placeholder,
+.mapping-placeholder {
+  padding: 20px;
+  text-align: center;
+  background-color: var(--surface-alt);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 10px 0;
+  border: 1px dashed var(--border-subtle);
+}
+
+/* Mapping form */
+.mapping-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.import-grid-container .mapping-field-group {
+  margin-bottom: 10px;
+}
+
+.import-grid-container .mapping-field-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.required-mark {
+  color: var(--status-error);
+}
+
+.mapping-field-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.required-field-note {
+  color: var(--status-error);
+  font-style: italic;
+}

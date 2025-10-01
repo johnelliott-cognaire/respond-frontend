@@ -1,0 +1,222 @@
+/* Worksheet Tabs Component
+   Used specifically for the import wizard Excel-style tabs
+   These are different from the main Excel-style tabs in the application
+
+   styles/components/import-worksheet-tabs.css
+*/
+
+  /* Scroll buttons */
+  .worksheet-scroll-btn {
+    flex: 0 0 auto;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 12px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+  }
+  
+  .worksheet-scroll-btn:hover {
+    color: var(--text-primary);
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .worksheet-scroll-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  
+  /* Tabs wrapper */
+  .worksheet-tabs-wrapper {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    height: 100%;
+  }
+
+  .worksheet-tabs-modal-wrapper {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+  }
+
+  .worksheet-tab-modal-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-width: 100px;
+    max-width: 180px;
+    overflow: hidden;
+    margin-right: 2px;
+  }
+  
+
+  .worksheet-tab-modal {
+    background-color: #e6e6e6;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    padding: 6px 12px;
+    min-width: 80px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .worksheet-tab-modal:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .worksheet-tab-modal.active {
+    background-color: white;
+    border-bottom-color: white;
+    position: relative;
+    top: 1px;
+    z-index: 1;
+    font-weight: bold;
+  }
+  
+  .worksheet-tab-modal.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f0f0f0;
+  }
+  
+  .worksheet-tab-modal.excluded {
+    color: #999;
+    background-color: #f0f0f0;
+    font-style: normal;  /* Remove italics */
+  }
+  
+  .worksheet-tab-modal-badge {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 10px;
+    z-index: 2;
+  }
+  
+
+  /* Tab container */
+  .worksheet-tab-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-width: 100px;
+    max-width: 180px;
+    height: 100%;
+    overflow: hidden;
+    margin-right: 2px;
+  }
+  
+  /* Individual tab */
+  .worksheet-tab {
+    height: 100%;
+    background-color: var(--surface-alt);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    padding: 6px 12px;
+    min-width: 90px;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+  }
+  
+  .worksheet-tab:hover:not(.active) {
+    background-color: #f0f0f0;
+  }
+  
+  .worksheet-tab.active {
+    background-color: white;
+    border-bottom-color: white;
+    position: relative;
+    top: 1px;
+    z-index: 1;
+    font-weight: bold;
+    color: var(--text-primary);
+  }
+  
+  .worksheet-tab.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #f0f0f0;
+  }
+  
+  .worksheet-tab.excluded {
+    color: #999;
+    background-color: #f0f0f0;
+    font-style: normal;
+  }
+  
+  /* Tab badge */
+  .worksheet-tab-badge {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 10px;
+    z-index: 2;
+  }
+  
+  /* Include/exclude toggle */
+  .include-exclude-toggle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .include-exclude-toggle label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .toggle-button-group {
+    display: flex;
+  }
+  
+  .toggle-button {
+    padding: 8px 15px;
+    border: 1px solid var(--border-subtle);
+    background-color: var(--surface-alt);
+    cursor: pointer;
+  }
+  
+  .toggle-button:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  
+  .toggle-button:last-child {
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .toggle-button.active {
+    background-color: var(--interactive-primary);
+    color: var(--text-on-primary);
+    border-color: var(--interactive-primary);
+  }
+  
+  .exclude-button.active {
+    background-color: var(--status-error);
+    border-color: var(--status-error);
+  }

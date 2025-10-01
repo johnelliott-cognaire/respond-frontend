@@ -1,0 +1,158 @@
+/* Import Wizard Modal - Specialized styling for the import wizard
+   Extends the base modal component with specific layout for the multi-step wizard
+
+   styles/components/import-wizard-modal.css
+*/
+/* -------------------------------------------------------------------
+ *  File: styles/components/import-wizard-modal.css
+ * -------------------------------------------------------------------*/
+
+/* NOTE: Duplicated selectors (step, import-step, etc.) were removed –
+ * they now live exclusively in layouts/import-wizard.css.  This file is
+ * limited to modal‑container sizing & footer controls. */
+
+.modal--import-wizard {
+  top: 3% !important;
+  transform: translateX(-50%) !important;
+  width: min(1900px, 95vw) !important;
+  height: 95vh !important;
+  display: flex;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  padding-top: 9px !important;
+}
+
+.modal--import-wizard .modal-header {
+  flex: 0 0 auto;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.modal--import-wizard .modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.modal--import-wizard .step-indicator {
+  /* header already defined above; override bg if needed */
+}
+
+.modal--import-wizard .modal-content {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  padding: 0;
+}
+
+.modal--import-wizard .import-wizard-content {
+  padding-bottom: 70px;
+}
+
+.modal--import-wizard .modal-footer {
+  flex: 0 0 auto;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface-default);
+  border-top: 1px solid var(--border-subtle);
+  padding: 15px 20px;
+  box-shadow: 0 -2px 10px var(--shadow-subtle);
+  z-index: 16;
+}
+
+.modal--import-wizard .modal-footer .button-group {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+}
+
+.modal--import-wizard .modal-footer .btn {
+  padding: 8px 15px;
+  min-width: 80px;
+  flex: 0 0 auto;
+}
+
+.modal--import-wizard .modal-footer .btn.btn-cancel,
+.modal--import-wizard .modal-footer .btn.btn-back {
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+/* -------------------------------------------------------------------
+   *  File: styles/components/import-worksheet-results.css   (NEW)
+   * -------------------------------------------------------------------*/
+
+/* This tiny file only houses the worksheet‑result styles so other
+   * screens can reuse them without importing the whole Results step. */
+
+.worksheet-results-section {
+  margin-bottom: 20px;
+}
+
+.worksheet-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.worksheet-result-item {
+  padding: 10px 15px;
+  background-color: var(--surface-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+}
+
+.worksheet-result-item.has-errors {
+  background-color: rgba(var(--status-warning), .1);
+  border-color: var(--status-warning);
+}
+
+.worksheet-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.worksheet-result-name {
+  font-weight: var(--font-weight-medium);
+}
+
+.worksheet-result-stats {
+  font-size: 14px;
+}
+
+.success-count {
+  color: var(--status-success);
+  margin-right: 10px;
+}
+
+.error-count {
+  color: var(--status-error);
+}
+
+/* -------------------------------------------------------------------
+   *  File: styles/utilities/import-wizard-state.css  (NEW – optional)
+   * -------------------------------------------------------------------*/
+
+/* One‑liner state utilities consumed by JS status toggling */
+.all-success {
+  background-color: rgba(var(--status-success), .08) !important;
+}
+
+.has-warnings {
+  background-color: rgba(var(--status-warning), .08) !important;
+}
+
+.no-data {
+  background-color: rgba(var(--text-muted), .06) !important;
+}

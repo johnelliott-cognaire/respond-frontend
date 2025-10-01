@@ -1,0 +1,7 @@
+{
+    "running": "status--running",
+    "completed": "status--completed",
+    "failed": "status--failed",
+    "cancelled": "status--cancelled",
+    "stopped": "status--stopped"
+  }

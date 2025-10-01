@@ -1,0 +1,342 @@
+/* File: styles/menu-legacy.css */
+
+/* === New Tab Menu === */
+.new-tab-menu {
+  position: absolute;
+  z-index: 9999;
+  display: none;
+}
+
+.new-tab-menu.visible {
+  display: block !important;
+}
+
+/* === Task Menu === */
+.task-menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--surface-dropdown);
+  border: 1px solid var(--surface-dropdown-border);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px var(--shadow-dropdown);
+  min-width: 200px;
+  padding: 8px 0;
+}
+
+.task-menu.visible {
+  display: block;
+}
+
+.task-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: var(--text-light);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.task-menu-item:hover {
+  background-color: var(--surface-dropdown-hover);
+}
+
+/* === Project Menu === */
+.project-menu {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  min-width: 200px;
+  background-color: var(--surface-dropdown);
+  border: 1px solid var(--surface-dropdown-border);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px var(--shadow-dropdown);
+  padding: 8px 0;
+  z-index: 10000;
+  display: none;
+}
+
+.project-menu.visible {
+  display: block;
+}
+
+.project-item {
+  padding: 8px 12px;
+  color: var(--text-light);
+  cursor: pointer;
+}
+
+.project-item:hover {
+  background-color: var(--surface-dropdown-hover);
+}
+
+/* === Dropdown Base Enhancements === */
+.notifications-dropdown {
+  background-color: var(--surface-dropdown);
+  border: 1px solid var(--surface-dropdown-border);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px var(--shadow-dropdown);
+  width: 320px;
+  min-width: 250px;
+  z-index: 1000;
+}
+
+/* === Dropdown Content === */
+.dropdown-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* === Dropdown Header === */
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  font-weight: 500;
+  color: var(--text-light);
+  border-bottom: 1px solid var(--surface-dropdown-border);
+  background-color: var(--surface-alt);
+  font-size: 0.9em;
+}
+
+.dropdown-header .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--interactive-primary);
+  color: var(--text-on-primary);
+  border-radius: 10px;
+  padding: 2px 6px;
+  font-size: 11px;
+  margin-left: 5px;
+  min-width: 18px;
+}
+
+/* === Mark All Read Button === */
+.mark-all-read-btn {
+  background: none;
+  border: none;
+  color: var(--interactive-primary);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.mark-all-read-btn:hover {
+  background-color: var(--surface-default);
+}
+
+/* === Notification List & Items === */
+.notifications-list {
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--surface-dropdown-border);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item:hover {
+  background-color: var(--surface-dropdown-hover);
+}
+
+.notification-item.unread {
+  background-color: var(--focus-ring);
+}
+
+.notification-item.unread:hover {
+  background-color: rgba(var(--interactive-primary-rgb), 0.15);
+}
+
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+}
+
+.notification-icon {
+  margin-right: 12px;
+  color: var(--text-muted);
+  min-width: 20px;
+  font-size: 16px;
+}
+
+.notification-item.unread .notification-icon {
+  color: var(--interactive-primary);
+}
+
+.notification-message {
+  margin-bottom: 4px;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.notification-time {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* === Job Items === */
+.job-item {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--surface-dropdown-border);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.job-item:last-child {
+  border-bottom: none;
+}
+
+.job-item:hover {
+  background-color: var(--surface-dropdown-hover);
+}
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.job-title {
+  font-weight: 500;
+  color: var(--text-primary);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 6px;
+}
+
+.job-status {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 500;
+  text-transform: lowercase;
+  min-width: 70px;
+  text-align: center;
+}
+
+.job-status.running {
+  background-color: var(--job-status-running-muted);
+  color: var(--job-status-running);
+}
+
+.job-status.completed {
+  background-color: var(--job-status-completed-muted);
+  color: var(--job-status-completed);
+}
+
+.job-status.failed {
+  background-color: var(--job-status-failed-muted);
+  color: var(--job-status-failed);
+}
+
+.job-status.cancelled,
+.job-status.stopped {
+  background-color: var(--job-status-cancelled-muted);
+  color: var(--job-status-cancelled);
+}
+
+.job-progress {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background-color: var(--surface-default);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.progress {
+  height: 100%;
+  background-color: var(--interactive-primary);
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: var(--text-muted);
+  width: 36px;
+  text-align: right;
+}
+
+.job-type {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* === Dropdown Footer === */
+.dropdown-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background-color: var(--surface-alt);
+  border-top: 1px solid var(--surface-dropdown-border);
+  text-align: center;
+}
+
+.dropdown-footer button,
+.view-all-btn {
+  background: none;
+  border: none;
+  color: var(--interactive-primary);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
+.dropdown-footer button:hover,
+.view-all-btn:hover {
+  background-color: var(--surface-default);
+  text-decoration: underline;
+}
+
+.refresh-btn i {
+  margin-right: 5px;
+}
+
+/* === States: Empty, Loading, Error === */
+.empty-state,
+.loading-state,
+.error-state {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.empty-state {
+  padding: 16px;
+}
+
+.error-state {
+  color: var(--status-error);
+}
+
+.loading-state i,
+.error-state i {
+  margin-right: 8px;
+  font-size: 16px;
+}

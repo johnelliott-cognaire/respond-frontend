@@ -1,0 +1,312 @@
+/* File: styles/modal-navigation.css */
+/**
+ * CSS styles for router-enabled navigation elements
+ * Handles active states, transitions, and accessibility
+ */
+
+/* Router-enabled navigation elements */
+[data-router-link] {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Active state for router links */
+.router-active {
+  /* Subtle highlight for active navigation */
+  background: var(--surface-selected) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Top-bar specific router link styles */
+.top-bar .logo.router-active {
+  /* Active logo styling */
+  background: var(--surface-subtle);
+  border-radius: 4px;
+}
+
+.top-bar .corpus-icon.router-active {
+  /* Active corpus icon styling */
+  background: var(--surface-selected);
+  border-radius: 4px;
+  color: var(--interactive-primary);
+}
+
+.top-bar .corpus-icon.router-active i {
+  color: var(--interactive-primary);
+}
+
+/* Focus states for accessibility */
+[data-router-link]:focus {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: 2px;
+}
+
+/* Hover states */
+[data-router-link]:hover {
+  background: var(--surface-hover);
+  transition: background-color 0.15s ease;
+}
+
+/* Disabled state for router links */
+[data-router-link][aria-disabled="true"] {
+  opacity: var(--opacity-disabled);
+  pointer-events: none;
+}
+
+/* Active indicator for precise navigation feedback */
+.router-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: var(--interactive-primary);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Remove indicator for certain elements */
+.top-bar .logo.router-active::before,
+.top-bar .icon.router-active::before {
+  display: none;
+}
+
+/* Breadcrumb navigation styles */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: var(--spacing-4) 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.breadcrumb-link {
+  color: var(--interactive-primary);
+  text-decoration: none;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+}
+
+.breadcrumb-link:hover {
+  background: var(--surface-hover);
+  text-decoration: underline;
+}
+
+.breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 500;
+  padding: var(--spacing-1) var(--spacing-2);
+}
+
+.breadcrumb-separator {
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+/* Router navigation menu styles */
+.router-nav {
+  padding: var(--spacing-4);
+}
+
+.router-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.router-nav .nav-item {
+  margin-bottom: var(--spacing-1);
+}
+
+.router-nav .nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.router-nav .nav-link:hover {
+  background: var(--surface-hover);
+}
+
+.router-nav .nav-link.router-active {
+  background: var(--surface-selected);
+  color: var(--interactive-primary);
+  font-weight: 500;
+}
+
+.router-nav .nav-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.router-nav .nav-badge {
+  background: var(--status-error);
+  color: var(--color-white);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+  margin-left: auto;
+}
+
+.router-nav .nav-badge-primary { background: var(--interactive-primary); }
+.router-nav .nav-badge-warning { background: var(--status-warning); }
+.router-nav .nav-badge-success { background: var(--status-success); }
+
+/* Nested navigation levels */
+.router-nav .nav-level-1 {
+  margin-left: var(--spacing-4);
+  margin-top: var(--spacing-2);
+}
+
+.router-nav .nav-level-1 .nav-link {
+  font-size: 14px;
+  padding: var(--spacing-2) var(--spacing-3);
+}
+
+/* Animation for route transitions */
+@keyframes routeTransition {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.route-transition {
+  animation: routeTransition 0.2s ease-out;
+}
+
+/* Error states for invalid routes */
+.router-error {
+  background: var(--status-error-subtle);
+  border: 1px solid var(--status-error);
+  color: var(--status-error-text);
+  padding: var(--spacing-3);
+  border-radius: 6px;
+  margin: var(--spacing-4) 0;
+}
+
+.router-error-title {
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+}
+
+.router-error-message {
+  font-size: 14px;
+  margin-bottom: var(--spacing-2);
+}
+
+.router-error-details {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: var(--font-family-mono);
+  background: var(--surface-subtle);
+  padding: var(--spacing-2);
+  border-radius: 4px;
+  white-space: pre-wrap;
+}
+
+/* Loading states during route validation */
+.router-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-8);
+  color: var(--text-secondary);
+}
+
+.router-loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-subtle);
+  border-top: 2px solid var(--interactive-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive considerations */
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 12px;
+  }
+  
+  .router-nav {
+    padding: var(--spacing-2);
+  }
+  
+  .router-nav .nav-link {
+    padding: var(--spacing-2);
+  }
+  
+  /* Hide text on small screens, keep icons */
+  .router-nav .nav-link .nav-text {
+    display: none;
+  }
+  
+  .router-nav .nav-icon {
+    margin-right: 0;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .router-active {
+    border: 2px solid var(--interactive-primary) !important;
+  }
+  
+  .router-active::before {
+    width: 4px;
+    background: var(--interactive-primary);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  [data-router-link],
+  .breadcrumb-link,
+  .router-nav .nav-link {
+    transition: none;
+  }
+  
+  .routeTransition,
+  .router-loading-spinner {
+    animation: none;
+  }
+}
