@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# AWS
+.aws-sam/
+samconfig.toml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local environment files
+*.env
+!.env.example
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Node modules (if any)
+node_modules/
+
+# Build artifacts
+*.zip
+*.tar.gz
+
+# Deployment artifacts
+.sam-staging/
+tenant.py
+cqa-config.json
+corpus-config.json
+
+# Migration Tools - Staging and Sensitive Data
+.migration-staging/
+migration_tools/logs/*.log
+migration_tools/config/secrets/
+migration_tools/config/*.key
+migration_tools/config/*_credentials.json
+.deployment-staging/
+
+# Migration Runtime Files
+*.migration.tmp
+*.export.json.encrypted
+migration_*.pid
+
+# ML Models (downloaded locally for development)
+models/
+# Locally downloaded spaCy models
+*.nlp/
+en_core_web_sm/
+# Locally downloaded sentence transformer models
+.cache/
+sentence_transformers/
+all-MiniLM-L6-v2/
