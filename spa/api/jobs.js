@@ -140,12 +140,14 @@ export async function fetchJobs({
 
   // Use deduplication to prevent multiple identical calls
   const { deduplicateRequest } = await import("../utils/request-deduplication.js");
-  
+
   return deduplicateRequest(
     'fetchJobs',
     { status, type, startDate, endDate, limit: limit || 20, activeOnly },
     async () => {
+      // Get baseUrl dynamically to support tenant switching
       const baseUrl = getBaseUrl("main");
+      console.log("[jobsApi] Using baseUrl:", baseUrl);
       const url = `${baseUrl}/jobs/list-jobs`;
 
       const requestBody = {

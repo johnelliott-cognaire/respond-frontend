@@ -2,8 +2,13 @@
 
 import { getBaseUrl } from "../utils/config.js";
 
+// Note: These are evaluated once at module load time
+// For dynamic tenant switching, call getBaseUrl() directly in functions
 const API_BASE_URL = getBaseUrl("main");
 const API_PUBLIC_URL = getBaseUrl("public");
+
+console.log("[auth.js] Module loaded - API_BASE_URL:", API_BASE_URL);
+console.log("[auth.js] Module loaded - API_PUBLIC_URL:", API_PUBLIC_URL);
 
 /**
  * Enhanced user registration with comprehensive validation

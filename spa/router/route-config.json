@@ -4,7 +4,8 @@
   "globalSettings": {
     "preserveQueryParams": [
       "s",
-      "key"
+      "key",
+      "tenant"
     ],
     "defaultRoute": "docs",
     "errorRoute": "docs",
